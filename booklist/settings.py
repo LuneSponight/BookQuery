@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-w=935t08)pk7xsl^64@#*hrbmrl_)(=+5a)4emh$-h20pzz2t(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '192.168.10.3']
 
 
 # Application definition
@@ -76,8 +76,13 @@ WSGI_APPLICATION = "booklist.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+	'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bookQuery',
+        'USER': 'root',
+        'PASSWORD': 'mysQlSSnig449*',
+        'HOST': '192.168.10.1',
+        'PORT': '3306'
+
     }
 }
 
