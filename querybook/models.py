@@ -37,12 +37,12 @@ from django.db import models
 '''
 
 
-class Author:
+class Author(models.Model):
     AuthorID = models.IntegerField(primary_key=True, unique=True)
     AuthorName = models.CharField(max_length=100, default="NOT DEFINE")
 
 
-class Novel:
+class Novel(models.Model):
     NovelID = models.IntegerField(primary_key=True, unique=True)
     Title = models.CharField(max_length=100, default="NOT DEFINE")
     ReaderCount = models.IntegerField()
@@ -60,17 +60,17 @@ class Novel:
     CategoryID = models.ForeignKey('Category', on_delete=models.CASCADE)
 
 
-class Tag:
+class Tag(models.Model):
     TagID = models.IntegerField(primary_key=True, unique=True)
     TagName = models.CharField(max_length=20, default="NOT DEFINE")
 
 
-class Category:
+class Category(models.Model):
     CategoryID = models.IntegerField(primary_key=True, unique=True)
     CategoryName = models.CharField(max_length=20, default="NOT DEFINE")
 
 
-class NovelTag:
+class NovelTag(models.Model):
     AssociationID = models.IntegerField(primary_key=True, unique=True)
     NovelID = models.ForeignKey('Novel', on_delete=models.CASCADE)
     TagID = models.ForeignKey('Tag', on_delete=models.CASCADE)
