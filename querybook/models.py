@@ -41,6 +41,9 @@ class Author(models.Model):
     AuthorID = models.IntegerField(primary_key=True, unique=True)
     AuthorName = models.CharField(max_length=100, default="NOT DEFINE")
 
+    class Meta:
+        db_table = 'Author'
+
 
 class Novel(models.Model):
     NovelID = models.IntegerField(primary_key=True, unique=True)
@@ -56,24 +59,35 @@ class Novel(models.Model):
     CommentCount = models.IntegerField()
     BookNumber = models.IntegerField()
     WordCount = models.IntegerField()
-    AuthorID = models.ForeignKey('Author', on_delete=models.CASCADE)
-    CategoryID = models.ForeignKey('Category', on_delete=models.CASCADE)
+    AuthorID = models.ForeignKey('Author', on_delete=models.CASCADE, db_column='AuthorID')
+    CategoryID = models.ForeignKey('Category', on_delete=models.CASCADE, db_column='CategoryID')
+
+    class Meta:
+        db_table = 'Novel'
 
 
 class Tag(models.Model):
     TagID = models.IntegerField(primary_key=True, unique=True)
     TagName = models.CharField(max_length=20, default="NOT DEFINE")
 
+    class Meta:
+        db_table = 'Tag'
+
 
 class Category(models.Model):
     CategoryID = models.IntegerField(primary_key=True, unique=True)
     CategoryName = models.CharField(max_length=20, default="NOT DEFINE")
 
+    class Meta:
+        db_table = 'Category'
+
 
 class NovelTag(models.Model):
     AssociationID = models.IntegerField(primary_key=True, unique=True)
-    NovelID = models.ForeignKey('Novel', on_delete=models.CASCADE)
-    TagID = models.ForeignKey('Tag', on_delete=models.CASCADE)
+    NovelID = models.ForeignKey('Novel', on_delete=models.CASCADE, db_column='NovelID')
+    TagID = models.ForeignKey('Tag', on_delete=models.CASCADE, db_column='TagID')
 
+    class Meta:
+        db_table = 'NovelTag'
 
 # Create your models here.
