@@ -74,20 +74,20 @@ class Tag(models.Model):
         db_table = 'Tag'
 
 
+class NovelTag(models.Model):
+    AssociationID = models.IntegerField(primary_key=True, unique=True)
+    NovelID = models.ForeignKey('Novel', on_delete=models.CASCADE, db_column='NovelID', default=0)
+    TagID = models.ForeignKey('Tag', on_delete=models.CASCADE, db_column='TagID', default=0)
+
+    class Meta:
+        db_table = 'NovelTag'
+
+
 class Category(models.Model):
     CategoryID = models.IntegerField(primary_key=True, unique=True)
     CategoryName = models.CharField(max_length=20, default="NOT DEFINE")
 
     class Meta:
         db_table = 'Category'
-
-
-class NovelTag(models.Model):
-    AssociationID = models.IntegerField(primary_key=True, unique=True)
-    NovelID = models.ForeignKey('Novel', on_delete=models.CASCADE, db_column='NovelID')
-    TagID = models.ForeignKey('Tag', on_delete=models.CASCADE, db_column='TagID')
-
-    class Meta:
-        db_table = 'NovelTag'
 
 # Create your models here.
