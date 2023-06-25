@@ -1,7 +1,9 @@
 from django.shortcuts import render
 import json
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from pyspark.sql import SparkSession
+
+from booklist import settings
 
 
 def index(request):
@@ -49,6 +51,20 @@ def call_spark_interface(request):
         'data': pandas_df.to_dict(orient='records')
     }
     return JsonResponse(result)
+
+
+def my_view(request):
+    # 创建SparkSession对象
+    spark = SparkSession.builder \
+        .appName(settings.SPARK_APP_NAME) \
+        .master(settings.SPARK_MASTER) \
+        .config('spark.executor.memory', settings.SPARK_EXECUTOR_MEMORY) \
+        .getOrCreate()
+
+    # 使用Spark进行数据处理
+    # ...
+
+    return HttpResponse("Spark processing completed.")
 
 
 def get_data(request):
