@@ -366,8 +366,7 @@
         </div>
         <div class="pie" id="piechart">
             <script type="text/javaScript">
-                var myChart=echarts.init(document.getElementById('piechart')); 
-                //var jst={"pieChart_Total":[{"value":20,"name":"都市"},{"value":30,"name":"修仙"},{"value":56,"name":"历史"},{"value":12,"name":"玄幻"}]};
+                var myChart=echarts.init(document.getElementById('piechart'));
                 myChart.setOption({
                     series:[{
                         name: '分类', 
@@ -378,7 +377,7 @@
                         label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } },       
                     }]
                 });
-                $.get('test.json').done(function(data){//获取json
+                $.get('../request/posttest').done(function(data){//获取json
                     //data=JSON.parse(data);
                     //$('#total').click(function(){})
                     myChart.setOption({

@@ -72,10 +72,6 @@ def get_data(request):
 def test(request):
     if request.method == 'GET':
         return render(request, 'test.html')
-    if request.method == 'POST':
-        json_data = json.load(request.body)
-        print(json_data)
-        return HttpResponse(200)
 
 
 def analyse_data(request):
@@ -83,4 +79,8 @@ def analyse_data(request):
         print(request.body)
         json_data = json.loads(request.body)
         print(json_data)
-        return HttpResponse(200)
+
+        json_return = '{"pieChart_Total":[{"value":20,"name":"都市"},{"value":30,"name":"修仙"},{"value":56,"name":"历史"},' \
+                      '{"value":12,"name":"玄幻"}]} '
+
+        return JsonResponse(json_return, safe=False)
