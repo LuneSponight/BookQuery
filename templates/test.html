@@ -8,8 +8,8 @@
     <link rel="stylesheet" type="text/css" href="../static/css/mycss.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
-<!--    <script src="test.json"></script>-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.2.2/echarts.common.js"></script>
+    <script src="../static/test.json"></script>
     <title>小说网站数据分析</title>
 </head>
 
@@ -81,9 +81,9 @@
             </div>
 
             <div class="selectone">
-                <button type="button" class="btn btn-outline-primary" id="method0">按照数量统计</button>
-                <button type="button" class="btn btn-outline-primary" id="method1">按照分类统计</button>
-                <button type="button" class="btn btn-outline-primary" id="method2">按照标签统计</button>
+                <button type="button" class="btn btn-outline-primary num" id="method0">按照数量统计</button>
+                <button type="button" class="btn btn-outline-primary cat" id="method1">按照分类统计</button>
+                <button type="button" class="btn btn-outline-primary tag" id="method2">按照标签统计</button>
             </div>
 
             <div class="selecttwo">
@@ -100,9 +100,11 @@
         </div>
     </div>  
     <script>//change buttons
-    $('.btn-outline-success').click(function () { $(this).toggleClass('selected1')})
+    $('.btn-outline-success').click(function () { $(this).toggleClass('selected1')})//slect and change color
     $('.btn-outline-info').click(function () { $(this).toggleClass('selected2')})
-    $('.btn-outline-primary').click(function () { $(this).toggleClass('selected3')})//slect and change color
+    $('.num').click(function(){$(this).addClass('selected3');$('.cat').removeClass('selected3');$('.tag').removeClass('selected3');})
+    $('.cat').click(function(){$(this).addClass('selected3');$('.num').removeClass('selected3');$('.tag').removeClass('selected3');})
+    $('.tag').click(function(){$(this).addClass('selected3');$('.cat').removeClass('selected3');$('.num').removeClass('selected3');})
     $('#remove').click(function(){
         $('.btn-outline-success').removeClass('selected1');
         $('.btn-outline-info').removeClass('selected2');
@@ -120,7 +122,6 @@
             }
             var caon=[];
             var taon=[];//to chick if the button is clicked
-            var clon=[0,0,0];
             for(var i=0;i<20;i++){caon[i]=0;taon[i]=0;}
 
             $('#category0').click(function(){//选择分类
@@ -325,16 +326,15 @@
                 else json_data.tags.splice(json_data.tags.findIndex((value)=>value==19), 1);
             })
             
-            $('#method0').click(function(){clon[0]++;if(clon[0]%2==1)json_data.statisticalMethod=0;})//选择方式
-            $('#method1').click(function(){clon[1]++;if(clon[1]%2==1)json_data.statisticalMethod=1;})
-            $('#method2').click(function(){clon[2]++;if(clon[2]%2==1)json_data.statisticalMethod=2;})
+            $('#method0').click(function(){json_data.statisticalMethod=0;})//选择方式
+            $('#method1').click(function(){json_data.statisticalMethod=1;})
+            $('#method2').click(function(){json_data.statisticalMethod=2;})
 
             $('#remove').click(function(){//取消选择
                 for(var i=0;i<20;i++){caon[i]=0;taon[i]=0;}
                 json_data.category.splice(0,json_data.category.length);
                 json_data.tags.splice(0,json_data.tags.length);
                 json_data.statisticalMethod=0;
-                clon=[0,0,0];
             })
 
             $('#submit').click(function(){//提交
@@ -367,23 +367,31 @@
         <div class="pie" id="piechart">
             <script type="text/javaScript">
                 var myChart=echarts.init(document.getElementById('piechart')); 
-                var option = { 
-                    series: [
-                        { name: '分类', 
-                          type: 'pie', 
-                          radius: '60%', 
-                          data: [
-                            { value: 1, name: '都市' }, 
-                            { value: 2, name: '历史' }, 
-                            { value: 3, name: '玄幻' }, 
-                            { value: 3, name: '仙侠' }, 
-                            { value: 4, name: '悬疑' },
-                            { value: 5, name: '无限' }], 
-                          roseType: 'angle', 
-                          label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }, 
-                        }] 
-                    }; 
-                myChart.setOption(option);
+                //var jst={"pieChart_Total":[{"value":20,"name":"都市"},{"value":30,"name":"修仙"},{"value":56,"name":"历史"},{"value":12,"name":"玄幻"}]};
+                myChart.setOption({
+                    series:[{
+                        name: '分类', 
+                        type: 'pie', 
+                        radius: '60%', 
+                        data:[],
+                        roseType: 'angle', 
+                        label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } },       
+                    }]
+                });
+                $.get('test.json').done(function(data){//获取json
+                    //data=JSON.parse(data);
+                    //$('#total').click(function(){})
+                    myChart.setOption({
+                        series:[{
+                            name: '分类', 
+                            type: 'pie', 
+                            radius: '60%', 
+                            data: data.pieChart_Total, 
+                            roseType: 'angle', 
+                            label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } },                             
+                        }]
+                    });
+                });
             </script>
         </div>
         <div class="bar" id="barchart">

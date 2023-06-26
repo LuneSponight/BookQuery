@@ -1,0 +1,28 @@
+{
+    "pieChart_Total":[
+        {
+            "value":20,
+            "name":"都市"
+        },
+        {
+            "value":30,
+            "name":"修仙"
+        },
+        {
+            "value":56,
+            "name":"历史"
+        },
+        {
+            "value":12,
+            "name":"玄幻"
+        },
+        {
+            "value":22,
+            "name":"现实"
+        },
+        {
+            "value":25,
+            "name":"悬疑"
+        }
+    ]
+}
