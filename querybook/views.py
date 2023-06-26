@@ -24,7 +24,7 @@ def call_spark_interface(request):
         .getOrCreate()
 
     # 数据库连接配置
-    db_url = "jdbc:mysql://192.168.10.1:3306/booklist"
+    db_url = "jdbc:mysql://192.168.10.1:3306/bookquery"
     db_properties = {
         "user": "root",
         "password": "mysQlSSnig449*",
