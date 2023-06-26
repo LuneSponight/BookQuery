@@ -25,10 +25,6 @@ def call_spark_interface(request):
 
     # 数据库连接配置
     db_url = "jdbc:mysql://192.168.10.1:3306/bookquery"
-    db_properties = {
-        "user": "root",
-        "password": "mysQlSSnig449*",
-    }
 
     # 加载数据库数据
     query = "(SELECT NovelID, Title, ReaderCount FROM novel) AS my_query"
@@ -71,3 +67,14 @@ def my_view(request):
 def get_data(request):
     data = {'message': '这是要显示的数据'}
     return JsonResponse(data)
+
+
+def test(request):
+    if request.method == 'GET':
+        return render(request, 'test.html')
+    if request.method == 'POST':
+        json_data = json.load(request.body)
+        print(json_data)
+        return HttpResponse(200)
+
+

@@ -1,0 +1,69 @@
+.leftall {
+    width: 400px;
+    height: 100%;
+    position: fixed;
+    background-color: aliceblue;
+}
+
+.charts {
+    width: 1500px;
+    height: 4000px;
+    left: 400px;
+    background-color: aliceblue;
+    position: relative;
+}
+
+.selectone {
+    margin-top: 20px;
+}
+
+.selecttwo {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.selectthree {
+    margin-top: 20px;
+}
+
+.chartkind {
+    width: 100px;
+    height: 600px;
+    left: 70px;
+    top: 200px;
+    position: absolute;
+}
+
+.pie {
+    width: 700px;
+    height: 700px;
+    left: 200px;
+    top: 10px;
+    position: absolute;
+}
+.bar{
+    width: 1000px;
+    height: 500px;
+    top: 600px;
+    position: absolute;
+}
+.btn-outline-success.selected1{
+    background-color: #abf8ee;
+}
+.btn-outline-info.selected2{
+    background-color: #86b2f1;
+}
+.btn-outline-primary.selected3{
+    background-color: #f1f3da;
+}
+.cabt{
+    font-size: 17px;
+    margin-top: 4px;
+}
+.tabt{
+    font-size: 17px;
+    margin-top: 4px;
+}
+.choice{
+    width: 100px;
+}
