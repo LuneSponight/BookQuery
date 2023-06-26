@@ -24,15 +24,15 @@ def call_spark_interface(request):
         .getOrCreate()
 
     # 数据库连接配置
-    db_url = "jdbc:mysql://localhost:3306/your_database"
+    db_url = "jdbc:mysql://192.168.10.1:3306/booklist"
     db_properties = {
-        "user": "your_username",
-        "password": "your_password",
+        "user": "root",
+        "password": "mysQlSSnig449*",
         "driver": "com.mysql.jdbc.Driver"
     }
 
     # 加载数据库数据
-    query = "(SELECT column1, column2 FROM your_table) AS your_query"
+    query = "(SELECT NovelID, Title, ReaderCount FROM novel) AS my_query"
     data = spark.read \
         .format("jdbc") \
         .option("url", db_url) \
@@ -41,10 +41,11 @@ def call_spark_interface(request):
         .load()
 
     # 执行转换操作
-    transformed_data = data.filter(data['column1'] > 10)
+    transformed_data = data.filter(data['NovelID'] < 100)
+    print(transformed_data)
 
     # 将转换后的数据转换为Pandas DataFrame
-    pandas_df = transformed_data.toPandas()
+    pandas_df = data.toPandas()
 
     # 将转换后的数据作为JSON响应返回
     result = {
