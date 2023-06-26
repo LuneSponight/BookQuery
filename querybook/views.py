@@ -78,3 +78,8 @@ def test(request):
         return HttpResponse(200)
 
 
+def analyse_data(request):
+    if request.method == 'POST':
+        json_data = json.load(request.body)
+        print(json_data)
+        return HttpResponse(200)
