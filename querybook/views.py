@@ -28,7 +28,6 @@ def call_spark_interface(request):
     db_properties = {
         "user": "root",
         "password": "mysQlSSnig449*",
-        "driver": "com.mysql.jdbc.Driver"
     }
 
     # 加载数据库数据
@@ -37,7 +36,8 @@ def call_spark_interface(request):
         .format("jdbc") \
         .option("url", db_url) \
         .option("dbtable", query) \
-        .option("properties", db_properties) \
+        .option("user", "root") \
+        .option("password", "mysQlSSnig449*") \
         .load()
 
     # 执行转换操作
