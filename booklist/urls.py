@@ -23,6 +23,6 @@ urlpatterns = [
     path('index/', views.index),
     path('get-data/', views.get_data, name='get_data'),
     path('test-spark/', views.call_spark_interface, name='call_spark_interface'),
-    path('test/', views.test)
+    path('test/', views.test),
     path('request/posttest', views.analyse_data)
 ]
