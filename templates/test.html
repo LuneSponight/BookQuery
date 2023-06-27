@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../static/css/mycss.css">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.2.2/echarts.common.js"></script>
     <script src="../static/test.json"></script>
@@ -366,70 +366,86 @@
         </div>
         <div class="pie" id="piechart">
             <script type="text/javaScript">
-                var myChart=echarts.init(document.getElementById('piechart'));
-                myChart.setOption({
-                    series:[{
-                        name: '分类', 
-                        type: 'pie', 
-                        radius: '60%', 
-                        data:[],
-                        roseType: 'angle', 
-                        label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } },       
-                    }]
-                });
-                $.get('../request/posttest').done(function(data){//获取json
-                    //data=JSON.parse(data);
-                    //$('#total').click(function(){})
-                    myChart.setOption({
-                        series:[{
-                            name: '分类', 
-                            type: 'pie', 
-                            radius: '60%', 
-                            data: data.pieChart_Total, 
-                            roseType: 'angle', 
-                            label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } },                             
-                        }]
-                    });
+                var myChart=echarts.init(document.getElementById('piechart')); 
+                $.ajax({
+                    url:'test.json',
+                    error:function (r) {
+                        console.log('返回错误');
+                    },
+                    success:function (data) {
+                        data=JSON.parse(data);
+                        console.log(data);
+                        var showdata=data.pieChart_Total; 
+                        myChart.setOption({
+                         series:[{
+                             name: '分类', 
+                             type: 'pie', 
+                             radius: '60%', 
+                             data: showdata, 
+                             roseType: 'angle', 
+                             label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } },                             
+                         }]
+                     });
+                        $('#total').click(function(){showdata=data.pieChart_Total;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata, 
+                             roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
+                        $('#clicks').click(function(){showdata=data.pieChart_Clicks;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata, 
+                             roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
+                        $('#recommends').click(function(){showdata=data.pieChart_Recommedations;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata, 
+                             roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
+                        $('#words').click(function(){showdata=data.pieChart_WordCount;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata, 
+                             roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
+                        $('#readers').click(function(){showdata=data.pieChart_ReaderCount;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata, 
+                             roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
+                        $('#gifts').click(function(){showdata=data.pieChart_GiftCount;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata, 
+                             roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
+                    }
                 });
             </script>
         </div>
         <div class="bar" id="barchart">
             <script type="text/javascript">
-                var myChart = echarts.init(document.getElementById('barchart'));
-                var option = {
-                    xAxis: {      
-                        axisLabel:{
-                        interval:0,
-                        rotate:-20,
+                var myChart1 = echarts.init(document.getElementById('barchart'));
+                $.ajax({
+                    url:'test.json',//改url
+                    error:function (r) {
+                        console.log('返回错误');
                     },
-                        data:["诛仙","大道争锋","升邪","拔魔","回到过去变成猫","赛博时代的魔女","残袍","道诡异仙","诡秘之主","将夜"]
-                    },
-                    yAxis: {},
-                    tooltip: {
-				        trigger:'item',
-				        triggerOn:'click',
-				formatter:function(arg){
-                        console.log(arg)
-                    	return '《'+arg.name + '》的热度是：' + arg.data
-                        }
-			        },
-                    series: [{
-                        type: 'bar',
-                        barWidth: '50%',
-                        data: [88,92,63,77,94,80,72,86,112,65],
-                        color:'blue',
-                        itemStyle: {
-                                    normal: {
-                                    color: function(params) {
-                                    var colorList = ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83', '#ca8622','#00A3E0','#FFA100', '#ffc0cb', '#CCCCCC', '#BBFFAA','#749f83', '#ca8622'];
-                                    return colorList[params.dataIndex]
-                                }
+                    success:function (data) { 
+                        data=JSON.parse(data);
+                        myChart1.setOption({
+                            xAxis: {      
+                            axisLabel:{
+                            interval:0,
+                            rotate:-20,
+                            },
+                            data:data.barChart_novals
+                        },
+                        yAxis: {},
+                        tooltip: {
+				            trigger:'item',
+				            triggerOn:'click',
+				            formatter:function(arg){
+                                console.log(arg)
+                    	        return '《'+arg.name + '》的点击量是：' + arg.data
                             }
-                        }
-                    }],
-                    
-                };
-                myChart.setOption(option);
+			            },
+                        series: [{
+                            type: 'bar',
+                            barWidth: '50%',
+                            data: data.barChart_clicks,
+                            color:'blue',
+                            itemStyle: {
+                                        normal: {
+                                        color: function(params) {
+                                        var colorList = ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83', '#ca8622','#00A3E0','#FFA100', '#ffc0cb', '#CCCCCC', '#BBFFAA','#749f83', '#ca8622'];
+                                        return colorList[params.dataIndex]
+                                        }
+                                    }
+                                }
+                            }],
+                        });
+                    }
+                });                
             </script>
         </div>
     </div>

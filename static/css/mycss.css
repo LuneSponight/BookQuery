@@ -6,8 +6,8 @@
 }
 
 .charts {
-    width: 1000px;
-    height: 2000px;
+    width: 1120px;
+    height: 1400px;
     left: 400px;
     background-color: aliceblue;
     position: relative;
@@ -29,22 +29,23 @@
 .chartkind {
     width: 100px;
     height: 600px;
-    left: 70px;
+    left: 120px;
     top: 200px;
     position: absolute;
 }
 
 .pie {
-    width: 700px;
+    width: 800px;
     height: 700px;
-    left: 200px;
+    left: 250px;
     top: 10px;
     position: absolute;
 }
 .bar{
     width: 1000px;
-    height: 500px;
-    top: 600px;
+    height: 600px;
+    top: 700px;
+    left: 50px;
     position: absolute;
 }
 .btn-outline-success.selected1{
