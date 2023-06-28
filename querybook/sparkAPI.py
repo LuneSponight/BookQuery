@@ -15,7 +15,7 @@ Category = spark.read.jdbc(url=url, table="Category", properties=properties)
 Tag = spark.read.jdbc(url=url, table="Tag", properties=properties)
 NovelTag = spark.read.jdbc(url=url, table="NovelTag", properties=properties)
 
-Index_CategoryName_Refer = {"0": "东方玄幻", "1": "都市激战", "4": "时空快穿"}
+Index_CategoryName_Refer = {"0": "东方玄幻", "1": "都市激战", "3": "时空快穿"}
 Index_TagName_Refer = {"0": "热血", "5": "搞笑"}
 
 
