@@ -368,12 +368,15 @@
             <script type="text/javaScript">
                 var myChart=echarts.init(document.getElementById('piechart')); 
                 $.ajax({
-                    url:'test.json',
-                    error:function (r) {
+                    type:'POST',
+                    url:'/request/posttest',
+                    dataType:"json",
+                    error:function (xhr, status, error) {
+                        console.log(error);
                         console.log('返回错误');
                     },
                     success:function (data) {
-                        data=JSON.parse(data);
+                        //data=JSON.parse(data);
                         console.log(data);
                         var showdata=data.pieChart_Total; 
                         myChart.setOption({
@@ -406,12 +409,15 @@
             <script type="text/javascript">
                 var myChart1 = echarts.init(document.getElementById('barchart'));
                 $.ajax({
-                    url:'test.json',//改url
+                    url:'/request/posttest',//改url
+                    dataType:'json',
+                    type:'POST',
                     error:function (r) {
+                        console.log(data);
                         console.log('返回错误');
                     },
                     success:function (data) { 
-                        data=JSON.parse(data);
+                       //data=JSON.parse(data);
                         myChart1.setOption({
                             xAxis: {      
                             axisLabel:{
