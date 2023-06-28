@@ -5,8 +5,8 @@ from pyspark.sql import SparkSession
 
 from booklist import settings
 
-import sparkAPI
-import help
+import sparkAPI.py
+import help.py
 
 
 def index(request):
