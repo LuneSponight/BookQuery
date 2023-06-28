@@ -260,11 +260,11 @@ def analyse_data(request):
         # call function from spark
         result = {}
         if statisticalMethod == byCount:
-            result = sparkAPI.StatisticsByCount()
+            result = sparkAPI.StatisticsByCount(query_list)
         elif statisticalMethod == byCategory:
-            result = sparkAPI.StatisticsByCategory()
+            result = sparkAPI.StatisticsByCategory(query_list)
         elif statisticalMethod == byTag:
-            result = sparkAPI.StatisticsByTag()
+            result = sparkAPI.StatisticsByTag(query_list)
         else:  # should never happen
             print("Can not identify the query method whose param is statisticsMethod")
         print(result)
