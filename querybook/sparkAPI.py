@@ -6,7 +6,7 @@ from . import help
 from pyspark.sql import SparkSession
 
 spark = SparkSession.builder.appName("SparkJDBC").master("local[*]").getOrCreate()
-url = "jdbc:mysql://192.168.58.50:3306/spidersnew"
+url = "jdbc:mysql://192.168.10.1:3306/bookquery"
 properties = {"user": "root", "password": "mysQlSSnig449*"}
 
 Author = spark.read.jdbc(url=url, table="Author", properties=properties)
