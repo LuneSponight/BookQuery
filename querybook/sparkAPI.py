@@ -15,15 +15,28 @@ Category = spark.read.jdbc(url=url, table="Category", properties=properties)
 Tag = spark.read.jdbc(url=url, table="Tag", properties=properties)
 NovelTag = spark.read.jdbc(url=url, table="NovelTag", properties=properties)
 
+Index_CategoryName_Refer = {"0": "东方玄幻", "1": "都市激战", "4": "时空快穿"}
+Index_TagName_Refer = {"0": "热血", "5": "搞笑"}
+
 
 def StatisticsByCount(Params_list):
-    print("按照数量统计")
-    print("筛选条件为:", Params_list)
     # 判断筛选条件是否有效
+    Return_Dict = {}
+
     Valid_list = [Params_list[1] == [], Params_list[2] == [], Params_list[0] == []]
 
     Select_Category = Params_list[0]
+    Tem_Select_Category = []
+    for data in Select_Category:
+        Tem_Select_Category.append(Index_CategoryName_Refer[str(data)])
+    Select_Category = Tem_Select_Category
+
     Select_Tag = Params_list[1]
+    Tem_Select_Tag = []
+    for data in Select_Tag:
+        Tem_Select_Tag.append(Index_TagName_Refer[str(data)])
+    Select_Tag = Tem_Select_Tag
+
     Select_Author = Params_list[2]
 
     Select_CategoryID_list = Category.rdd.map(lambda x: (x[0], x[1])).filter(lambda x: x[1] in Select_Category).map(
@@ -43,49 +56,51 @@ def StatisticsByCount(Params_list):
             .rdd.filter(lambda x: help.JudgeByThree(x, Select_list, Valid_list)) \
             .map(lambda x: x[0]).collect()
 
+    Select_Novel_Number = len(Select_NovelID_list_ByThree)
+    Return_Dict["总计"] = Select_Novel_Number
+
     # 在选出的小说根据月点击量进行分类并计算每个类别的小说数量
     NumclassifiedbyClicks = Novel.select(Novel['NovelID'], Novel['MonthlyClicks']).rdd.filter(
         lambda x: x[0] in Select_NovelID_list_ByThree).keyBy(lambda x: help.AddMonthlyClicksKey(x)).countByKey()
-    print("点击量划分:", NumclassifiedbyClicks)
+    Return_Dict["点击量"] = dict(NumclassifiedbyClicks)
 
     # 在选出的小说根据月推荐票进行分类并计算每个类别的小说数量
     NumclassifiedbyMonrecoms = Novel.select(Novel['NovelID'], Novel['MonthlyRecommendations']).rdd.filter(
         lambda x: x[0] in Select_NovelID_list_ByThree).keyBy(
         lambda x: help.AddMonthlyRecommendationsKey(x)).countByKey()
-    print("月推荐票划分", NumclassifiedbyMonrecoms)
 
     # 在选出的小说根据读者数量进行分类并计算每个类别的小说数量
     NumclassifiedbyReaderCount = Novel.select(Novel['NovelID'], Novel['ReaderCount']).rdd.filter(
         lambda x: x[0] in Select_NovelID_list_ByThree).keyBy(lambda x: help.AddReaderCountKey(x)).countByKey()
-    print("读者数量划分", NumclassifiedbyReaderCount)
+    Return_Dict["读者数量"] = dict(NumclassifiedbyReaderCount)
 
     # 在选出的小说根据小说字数进行分类并计算每个类别的小说数量
     NumclassifiedbyWordCount = Novel.select(Novel['NovelID'], Novel['WordCount']).rdd.filter(
         lambda x: x[0] in Select_NovelID_list_ByThree).keyBy(lambda x: help.AddWordCountKey(x)).countByKey()
-    print("小说字数划分", NumclassifiedbyWordCount)
+    Return_Dict["小说字数"] = dict(NumclassifiedbyWordCount)
 
     # 在选出的小说根据礼物数量进行分类并计算每个类别的小说数量
     NumclassifiedbyGiftCount = Novel.select(Novel['NovelID'], Novel['GiftCount']).rdd.filter(
         lambda x: x[0] in Select_NovelID_list_ByThree).keyBy(lambda x: help.AddGiftCountKey(x)).countByKey()
-    print("礼物数量划分:", NumclassifiedbyGiftCount)
+    Return_Dict["礼物数量"] = dict(NumclassifiedbyGiftCount)
 
     # 在选出的小说根据总推荐票进行分类并计算每个类别的小说数量
     NumclassifiedbyTotalRecoms = Novel.select(Novel['NovelID'], Novel['TotalRecommendations']).rdd.filter(
         lambda x: x[0] in Select_NovelID_list_ByThree).keyBy(lambda x: help.AddTotalRecommencdationsKey(x)).countByKey()
-    print("总推荐票划分", NumclassifiedbyTotalRecoms)
+    Return_Dict["总推荐票"] = dict(NumclassifiedbyTotalRecoms)
 
     # 在选出的小说根据粉丝值进行分类并计算每个类别的小说数量
     NumclassifiedbyTotalFans = Novel.select(Novel['NovelID'], Novel['TotalFans']).rdd.filter(
         lambda x: x[0] in Select_NovelID_list_ByThree).keyBy(lambda x: help.AddTotalFansKey(x)).countByKey()
-    print("粉丝值划分:", NumclassifiedbyTotalFans)
 
     # 在选出的小说根据评论数进行分类并计算每个类别的小说数量
     NumclassifiedbyCommentCount = Novel.select(Novel['NovelID'], Novel['CommentCount']).rdd.filter(
         lambda x: x[0] in Select_NovelID_list_ByThree).keyBy(lambda x: help.AddCommentCountKey(x)).countByKey()
-    print("评论数划分:", NumclassifiedbyCommentCount)
+
+    return Return_Dict, CalculateHeatDegree()
 
 
-# StatisticsByCount([[],["热血","爽文"],[]])
+# StatisticsByCount([[1,4],[0,5],[]])
 # print()
 
 def StatisticsByCategory(Params_list):
@@ -267,14 +282,15 @@ def StatisticsByTag(Params_list):
 # print()
 
 def CalculateHeatDegree():
-    print("热度最高的10本小说为:")
     Top10Heat_Novel_MonthlyClicks = Novel.select(Novel["Title"], Novel["MonthlyClicks"]).rdd \
         .map(lambda x: (x[0], int(x[1]))).sortBy(keyfunc=lambda x: x[1], ascending=False).take(10)
-    print(type(Top10Heat_Novel_MonthlyClicks))
-    print(Top10Heat_Novel_MonthlyClicks)
+    RecommendNovelList = []
+    RecommendNovelClicksList = []
+    for k, v in Top10Heat_Novel_MonthlyClicks:
+        RecommendNovelList.append(k)
+        RecommendNovelClicksList.append(v)
+    return RecommendNovelList, RecommendNovelClicksList
 
-
-# CalculateHeatDegree()
 
 def RecommendaByReadNovel(NovelName):
     ReadNovel = Novel \
@@ -303,6 +319,5 @@ def RecommendaByReadNovel(NovelName):
         .filter(lambda x: x[0] in SameTagNovel_NovelIDList). \
         map(lambda x: (x[1], int(x[2]))).sortBy(keyfunc=lambda x: x[1], ascending=False).map(lambda x: x[0]).take(10)
     print("具有相同标签的其他小说中热度最高的10本小说:", SameTagNovelList)
-
 
 # RecommendaByReadNovel("三国的女人")
