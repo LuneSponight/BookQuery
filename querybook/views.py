@@ -80,7 +80,22 @@ def analyse_data(request):
     json_return = {}
     print(request.method)
     if request.method == 'POST':
+        # convert Request to Json
         print(request.body)
+        json_str = request.body.decode('utf-8')
+        json_data = json.loads(json_str)
+
+        # read datas from json
+        category = json_data['category']
+        tags = json_data['tags']
+        author = [json_data['author']]
+        statisticalMethod = json_data['statisticalMethod']
+
+        query_list = [category, tags, author]
+        print(query_list)
+
+        # call function from spark
+        # result = sparkAPI.StatisticsByCount()
 
         # json_return = {
         #     "pieChart_Total": [
