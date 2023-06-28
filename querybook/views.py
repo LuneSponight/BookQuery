@@ -5,8 +5,7 @@ from pyspark.sql import SparkSession
 
 from booklist import settings
 
-import sparkAPI.py
-import help.py
+from . import sparkAPI
 
 
 def index(request):
@@ -81,8 +80,7 @@ def analyse_data(request):
     json_return = {}
     print(request.method)
     if request.method == 'POST':
-
-       print(request.body)
+        print(request.body)
 
         # json_return = {
         #     "pieChart_Total": [

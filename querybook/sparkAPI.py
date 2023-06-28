@@ -2,7 +2,7 @@
 # os.environ["PYSPARK_PYTHON"] = "/usr/local/anaconda3/envs/spiders/bin/python3"
 # os.environ["PYSPARK_DRIVER_PYTHON"] = "/usr/local/anaconda3/envs/spiders/bin/python3"
 
-import help
+from . import help
 from pyspark.sql import SparkSession
 
 spark = SparkSession.builder.appName("SparkJDBC").master("local[*]").getOrCreate()
