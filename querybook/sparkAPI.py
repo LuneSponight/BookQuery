@@ -9,6 +9,10 @@ spark = SparkSession.builder.appName("SparkJDBC").master("spark://master:7077").
 url = "jdbc:mysql://192.168.10.1:3306/bookquery"
 properties = {"user": "root", "password": "mysQlSSnig449*"}
 
+import os
+os.environ["PYSPARK_PYTHON"] = "/usr/local/src/anaconda/envs/django/bin/python"
+os.environ["PYSPARK_DRIVER_PYTHON"] = "/usr/local/src/anaconda/envs/django/bin/python"
+
 Author = spark.read.jdbc(url=url, table="Author", properties=properties)
 Novel = spark.read.jdbc(url=url, table="Novel", properties=properties)
 Category = spark.read.jdbc(url=url, table="Category", properties=properties)
