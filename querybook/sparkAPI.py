@@ -144,7 +144,7 @@ def StatisticsByCategory(Params_list):
     # 在选出的小说中计算不同类别小说的数量
     Select_Novel_CateID_NovlID_CateNa = Novel.select(Novel["CategoryID"], Novel["NovelID"]).rdd.filter(
         lambda x: x[1] in Select_NovelID_list_ByThree).join(Category.rdd)
-    Return_Dict["不同类别小说的数量"] = help.ConvertMyDictToNeedDict(
+    Return_Dict["总计"] = help.ConvertMyDictToNeedDict(
         dict(Select_Novel_CateID_NovlID_CateNa.map(lambda x: (x[1][1], x[1][0])).countByKey()))
 
     # 在选出的小说中计算不同类别小说的平均月点击量
@@ -152,7 +152,7 @@ def StatisticsByCategory(Params_list):
                                                        Novel["MonthlyClicks"]).rdd.filter(
         lambda x: x[1] in Select_NovelID_list_ByThree) \
         .map(lambda x: (x[0], (x[1], x[2]))).join(Category.rdd).map(lambda x: (x[1][1], int(x[1][0][1])))
-    Return_Dict["月点击量"] = help.ConvertMyDictToNeedDict(
+    Return_Dict["点击量"] = help.ConvertMyDictToNeedDict(
         dict(help.CalculateMeanByDiffClass(Select_Novel_CateName_MonthlyClicks).collect()))
 
     # 在选出的小说中计算不同类别小说的平均月推荐票
@@ -252,12 +252,12 @@ def StatisticsByTag(Params_list):
         .filter(lambda x: x[1] in Select_NovelID_list_ByThree).join(Tag.rdd) \
         .map(lambda x: (x[1][1], x[1][0])).filter(lambda x: (x[0] in Select_Tag) or Valid_list[0]).sortBy(
         keyfunc=lambda x: x[1])
-    Return_Dict["不同标签小说的数量"] = help.ConvertMyDictToNeedDict(dict(Select_Novel_TagName_NovelID.countByKey()))
+    Return_Dict["总计"] = help.ConvertMyDictToNeedDict(dict(Select_Novel_TagName_NovelID.countByKey()))
 
     # 在选出的小说中计算不同标签小说的平均月点击量
     Select_Novel_TagName_MonthlyClicks = Select_Novel_TagName_NovelID.map(lambda x: (x[1], x[0])) \
         .join(Novel.select(Novel["NovelID"], Novel["MonthlyClicks"]).rdd).map(lambda x: (x[1][0], int(x[1][1])))
-    Return_Dict["月点击量"] = help.ConvertMyDictToNeedDict(
+    Return_Dict["点击量"] = help.ConvertMyDictToNeedDict(
         dict(help.CalculateMeanByDiffClass(Select_Novel_TagName_MonthlyClicks).collect()))
 
     # 在选出的小说中计算不同标签小说的平均月推荐票
