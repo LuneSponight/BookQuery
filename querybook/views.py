@@ -238,6 +238,20 @@ def test(request):
         }
         return render(request, 'test.html', {'json_data': json_return, 'json_str': JsonResponse(json_return).content.decode()})
 
+def manage_json(result, json_return):
+    pie = result[0]
+    bar = result[1]
+    json_return['pieChart_Total'] = [{'总计': pie['总计']}]
+    json_return['pieChart_Clicks'] = [pie['点击量']]
+    json_return['pieChart_Recommedations'] = pass
+    json_return['pieChart_WordCount'] = pass
+    json_return['pieChart_GiftCount'] = pass
+    json_return['pieChart_ReaderCount'] = pass
+    json_return['barChart_novals'] = bar[0]
+    json_return['barChart_clicks'] = bar[1]
+
+
+
 
 def analyse_data(request):
     json_return = {}
@@ -268,6 +282,8 @@ def analyse_data(request):
         else:  # should never happen
             print("Can not identify the query method whose param is statisticsMethod")
         print(result)
+
+        json_return = manage_json
 
         # json_return format
         json_return = {"pieChart_Total": [],
