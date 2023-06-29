@@ -5,7 +5,7 @@
 from . import help
 from pyspark.sql import SparkSession
 
-spark = SparkSession.builder.appName("SparkJDBC").master("local[*]").getOrCreate()
+spark = SparkSession.builder.appName("SparkJDBC").master("spark://master:7077").getOrCreate()
 url = "jdbc:mysql://192.168.10.1:3306/bookquery"
 properties = {"user": "root", "password": "mysQlSSnig449*"}
 
@@ -17,8 +17,9 @@ NovelTag = spark.read.jdbc(url=url, table="NovelTag", properties=properties)
 
 
 def CalculateHeatDegree(NovelID_List):
-    Top10Heat_Novel_MonthlyClicks = Novel.select(Novel["NovelID"],Novel["Title"], Novel["MonthlyClicks"]).rdd \
-        .filter(lambda x:x[0] in NovelID_List).map(lambda x: (x[1], int(x[2]))).sortBy(keyfunc=lambda x: x[1], ascending=False).take(10)
+    Top10Heat_Novel_MonthlyClicks = Novel.select(Novel["NovelID"], Novel["Title"], Novel["MonthlyClicks"]).rdd \
+        .filter(lambda x: x[0] in NovelID_List).map(lambda x: (x[1], int(x[2]))).sortBy(keyfunc=lambda x: x[1],
+                                                                                        ascending=False).take(10)
     RecommendNovelList = []
     RecommendNovelClicksList = []
     for k, v in Top10Heat_Novel_MonthlyClicks:
