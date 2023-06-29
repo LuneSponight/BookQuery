@@ -16,9 +16,9 @@ Tag = spark.read.jdbc(url=url, table="Tag", properties=properties)
 NovelTag = spark.read.jdbc(url=url, table="NovelTag", properties=properties)
 
 
-def CalculateHeatDegree():
-    Top10Heat_Novel_MonthlyClicks = Novel.select(Novel["Title"], Novel["MonthlyClicks"]).rdd \
-        .map(lambda x: (x[0], int(x[1]))).sortBy(keyfunc=lambda x: x[1], ascending=False).take(10)
+def CalculateHeatDegree(NovelID_List):
+    Top10Heat_Novel_MonthlyClicks = Novel.select(Novel["NovelID"],Novel["Title"], Novel["MonthlyClicks"]).rdd \
+        .filter(lambda x:x[0] in NovelID_List).map(lambda x: (x[1], int(x[2]))).sortBy(keyfunc=lambda x: x[1], ascending=False).take(10)
     RecommendNovelList = []
     RecommendNovelClicksList = []
     for k, v in Top10Heat_Novel_MonthlyClicks:
@@ -104,7 +104,7 @@ def StatisticsByCount(Params_list):
     # print(Return_Dict)
     # print(CalculateHeatDegree())
 
-    Return_Dict["barchart_novels"], Return_Dict["barchart_clicks"] = CalculateHeatDegree()
+    Return_Dict["barchart_novels"], Return_Dict["barchart_clicks"] = CalculateHeatDegree(Select_NovelID_list_ByThree)
     return Return_Dict
 
 
@@ -210,7 +210,7 @@ def StatisticsByCategory(Params_list):
 
     # print(Return_Dict)
     # print(CalculateHeatDegree())
-    Return_Dict["barchart_novels"], Return_Dict["barchart_clicks"] = CalculateHeatDegree()
+    Return_Dict["barchart_novels"], Return_Dict["barchart_clicks"] = CalculateHeatDegree(Select_NovelID_list_ByThree)
     return Return_Dict
 
 
@@ -303,7 +303,7 @@ def StatisticsByTag(Params_list):
 
     # print(Return_Dict)
     # print(CalculateHeatDegree())
-    Return_Dict["barchart_novels"], Return_Dict["barchart_clicks"] = CalculateHeatDegree()
+    Return_Dict["barchart_novels"], Return_Dict["barchart_clicks"] = CalculateHeatDegree(Select_NovelID_list_ByThree)
     return Return_Dict
 
 
