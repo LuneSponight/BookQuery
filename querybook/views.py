@@ -236,21 +236,20 @@ def test(request):
             "barChart_novals": ["诛仙", "大道争锋", "升邪", "拔魔", "回到过去变成猫", "赛博时代的魔女", "残袍", "道诡异仙", "诡秘之主", "将夜"],
             "barChart_clicks": [18, 92, 63, 77, 94, 80, 72, 86, 112, 65]
         }
-        return render(request, 'test.html', {'json_data': json_return, 'json_str': JsonResponse(json_return).content.decode()})
+        return render(request, 'test.html',
+                      {'json_data': json_return, 'json_str': JsonResponse(json_return).content.decode()})
+
 
 def manage_json(result, json_return):
-    pie = result[0]
-    bar = result[1]
-    # json_return['pieChart_Total'] = [{'总计': pie['总计']}]
-    # json_return['pieChart_Clicks'] = [pie['点击量']]
-    # json_return['pieChart_Recommedations'] = pass
-    # json_return['pieChart_WordCount'] = pass
-    # json_return['pieChart_GiftCount'] = pass
-    # json_return['pieChart_ReaderCount'] = pass
-    # json_return['barChart_novals'] = bar[0]
-    # json_return['barChart_clicks'] = bar[1]
-
-
+    json_return['pieChart_Total'] = result['总计']
+    json_return['pieChart_Clicks'] = result['点击量']
+    json_return['pieChart_Recommedations'] = result['总推荐票']
+    json_return['pieChart_WordCount'] = result['小说字数']
+    json_return['pieChart_GiftCount'] = result['礼物数量']
+    json_return['pieChart_ReaderCount'] = result['读者数量']
+    json_return['barChart_novals'] = result['barchart_novels']
+    json_return['barChart_clicks'] = result['barchart_clicks']
+    return json_return
 
 
 def analyse_data(request):
@@ -283,8 +282,6 @@ def analyse_data(request):
             print("Can not identify the query method whose param is statisticsMethod")
         print(result)
 
-        json_return = manage_json
-
         # json_return format
         json_return = {"pieChart_Total": [],
                        "pieChart_Clicks": [],
@@ -294,6 +291,8 @@ def analyse_data(request):
                        "pieChart_ReaderCount": [],
                        "barChart_novals": [],
                        "barChart_clicks": []}
+
+        json_return = manage_json(result, json_return)
 
         # json_return = {
         #     "pieChart_Total": [
@@ -455,5 +454,5 @@ def analyse_data(request):
         #     "barChart_novals": ["诛仙", "大道争锋", "升邪", "拔魔", "回到过去变成猫", "赛博时代的魔女", "残袍", "道诡异仙", "诡秘之主", "将夜"],
         #     "barChart_clicks": [18, 92, 63, 77, 94, 80, 72, 86, 112, 65]
         # }
-
+        print(json_return)
     return JsonResponse(json_return, safe=False)
