@@ -256,203 +256,46 @@ def analyse_data(request):
     json_return = {}
     print(request.method)
     if request.method == 'POST':
-        # convert Request to Json
-        print(request.body)
-        json_str = request.body.decode('utf-8')
-        json_data = json.loads(json_str)
+        try:
+            # convert Request to Json
+            print(request.body)
+            json_str = request.body.decode('utf-8')
+            json_data = json.loads(json_str)
 
-        # read datas from json
-        category = json_data['category']
-        tags = json_data['tags']
-        author = [] if json_data['author'] == '' else [json_data['author']]
-        statisticalMethod = json_data['statisticalMethod']
+            # read datas from json
+            category = json_data['category']
+            tags = json_data['tags']
+            author = [] if json_data['author'] == '' else [json_data['author']]
+            statisticalMethod = json_data['statisticalMethod']
 
-        query_list = [category, tags, author]
-        print(query_list)
+            query_list = [category, tags, author]
+            print(query_list)
 
-        # call function from spark
-        result = {}
-        if statisticalMethod == byCount:
-            result = sparkAPI.StatisticsByCount(query_list)
-        elif statisticalMethod == byCategory:
-            result = sparkAPI.StatisticsByCategory(query_list)
-        elif statisticalMethod == byTag:
-            result = sparkAPI.StatisticsByTag(query_list)
-        else:  # should never happen
-            print("Can not identify the query method whose param is statisticsMethod")
-        print(result)
+            # call function from spark
+            result = {}
+            if statisticalMethod == byCount:
+                result = sparkAPI.StatisticsByCount(query_list)
+            elif statisticalMethod == byCategory:
+                result = sparkAPI.StatisticsByCategory(query_list)
+            elif statisticalMethod == byTag:
+                result = sparkAPI.StatisticsByTag(query_list)
+            else:  # should never happen
+                print("Can not identify the query method whose param is statisticsMethod")
+            print(result)
 
-        # json_return format
-        json_return = {"pieChart_Total": [],
-                       "pieChart_Clicks": [],
-                       "pieChart_Recommedations": [],
-                       "pieChart_WordCount": [],
-                       "pieChart_GiftCount": [],
-                       "pieChart_ReaderCount": [],
-                       "barChart_novals": [],
-                       "barChart_clicks": []}
+            # json_return format
+            json_return = {"pieChart_Total": [],
+                           "pieChart_Clicks": [],
+                           "pieChart_Recommedations": [],
+                           "pieChart_WordCount": [],
+                           "pieChart_GiftCount": [],
+                           "pieChart_ReaderCount": [],
+                           "barChart_novals": [],
+                           "barChart_clicks": []}
 
-        json_return = manage_json(result, json_return)
+            json_return = manage_json(result, json_return)
+        except Exception as e:
+            print(e)
 
-        # json_return = {
-        #     "pieChart_Total": [
-        #         {
-        #             "value": 20,
-        #             "name": "都市"
-        #         },
-        #         {
-        #             "value": 30,
-        #             "name": "修仙"
-        #         },
-        #         {
-        #             "value": 56,
-        #             "name": "历史"
-        #         },
-        #         {
-        #             "value": 12,
-        #             "name": "玄幻"
-        #         },
-        #         {
-        #             "value": 22,
-        #             "name": "现实"
-        #         },
-        #         {
-        #             "value": 25,
-        #             "name": "悬疑"
-        #         }
-        #     ],
-        #     "pieChart_Clicks": [
-        #         {
-        #             "value": 2111,
-        #             "name": "都市"
-        #         },
-        #         {
-        #             "value": 3023,
-        #             "name": "修仙"
-        #         },
-        #         {
-        #             "value": 1511,
-        #             "name": "历史"
-        #         },
-        #         {
-        #             "value": 1233,
-        #             "name": "玄幻"
-        #         },
-        #         {
-        #             "value": 2221,
-        #             "name": "现实"
-        #         },
-        #         {
-        #             "value": 2578,
-        #             "name": "悬疑"
-        #         }
-        #     ],
-        #     "pieChart_Recommedations": [
-        #         {
-        #             "value": 1111,
-        #             "name": "都市"
-        #         },
-        #         {
-        #             "value": 723,
-        #             "name": "修仙"
-        #         },
-        #         {
-        #             "value": 1511,
-        #             "name": "历史"
-        #         },
-        #         {
-        #             "value": 1233,
-        #             "name": "玄幻"
-        #         },
-        #         {
-        #             "value": 2721,
-        #             "name": "现实"
-        #         },
-        #         {
-        #             "value": 578,
-        #             "name": "悬疑"
-        #         }
-        #     ],
-        #     "pieChart_WordCount": [
-        #         {
-        #             "value": 2111100,
-        #             "name": "都市"
-        #         },
-        #         {
-        #             "value": 3023000,
-        #             "name": "修仙"
-        #         },
-        #         {
-        #             "value": 1511000,
-        #             "name": "历史"
-        #         },
-        #         {
-        #             "value": 1233000,
-        #             "name": "玄幻"
-        #         },
-        #         {
-        #             "value": 922100,
-        #             "name": "现实"
-        #         },
-        #         {
-        #             "value": 957800,
-        #             "name": "悬疑"
-        #         }
-        #     ],
-        #     "pieChart_GiftCount": [
-        #         {
-        #             "value": 21110,
-        #             "name": "都市"
-        #         },
-        #         {
-        #             "value": 30130,
-        #             "name": "修仙"
-        #         },
-        #         {
-        #             "value": 5110,
-        #             "name": "历史"
-        #         },
-        #         {
-        #             "value": 12330,
-        #             "name": "玄幻"
-        #         },
-        #         {
-        #             "value": 22210,
-        #             "name": "现实"
-        #         },
-        #         {
-        #             "value": 9578,
-        #             "name": "悬疑"
-        #         }
-        #     ],
-        #     "pieChart_ReaderCount": [
-        #         {
-        #             "value": 211100,
-        #             "name": "都市"
-        #         },
-        #         {
-        #             "value": 402300,
-        #             "name": "修仙"
-        #         },
-        #         {
-        #             "value": 351100,
-        #             "name": "历史"
-        #         },
-        #         {
-        #             "value": 120000,
-        #             "name": "玄幻"
-        #         },
-        #         {
-        #             "value": 210000,
-        #             "name": "现实"
-        #         },
-        #         {
-        #             "value": 257080,
-        #             "name": "悬疑"
-        #         }
-        #     ],
-        #     "barChart_novals": ["诛仙", "大道争锋", "升邪", "拔魔", "回到过去变成猫", "赛博时代的魔女", "残袍", "道诡异仙", "诡秘之主", "将夜"],
-        #     "barChart_clicks": [18, 92, 63, 77, 94, 80, 72, 86, 112, 65]
-        # }
         print(json_return)
     return JsonResponse(json_return, safe=False)
