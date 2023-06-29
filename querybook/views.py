@@ -241,14 +241,14 @@ def test(request):
 def manage_json(result, json_return):
     pie = result[0]
     bar = result[1]
-    json_return['pieChart_Total'] = [{'总计': pie['总计']}]
-    json_return['pieChart_Clicks'] = [pie['点击量']]
-    json_return['pieChart_Recommedations'] = pass
-    json_return['pieChart_WordCount'] = pass
-    json_return['pieChart_GiftCount'] = pass
-    json_return['pieChart_ReaderCount'] = pass
-    json_return['barChart_novals'] = bar[0]
-    json_return['barChart_clicks'] = bar[1]
+    # json_return['pieChart_Total'] = [{'总计': pie['总计']}]
+    # json_return['pieChart_Clicks'] = [pie['点击量']]
+    # json_return['pieChart_Recommedations'] = pass
+    # json_return['pieChart_WordCount'] = pass
+    # json_return['pieChart_GiftCount'] = pass
+    # json_return['pieChart_ReaderCount'] = pass
+    # json_return['barChart_novals'] = bar[0]
+    # json_return['barChart_clicks'] = bar[1]
 
 
 
