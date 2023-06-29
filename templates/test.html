@@ -111,7 +111,21 @@
         $('.btn-outline-primary').removeClass('selected3');//remove all selections
     })
     </script>
-    <script>//post to django
+
+    <div class="charts">
+        <div class="chartkind">
+            <button type="button" class="btn btn-outline-primary choice" id="total">总计</button>
+            <button type="button" class="btn btn-outline-secondary choice" id="clicks">点击量</button>
+            <button type="button" class="btn btn-outline-success choice" id="recommends">推荐量</button>
+            <button type="button" class="btn btn-outline-danger choice" id="words">作品字数</button>
+            <button type="button" class="btn btn-outline-warning choice" id="readers">读者数量</button>
+            <button type="button" class="btn btn-outline-info choice" id="gifts">礼物数量</button>
+        </div>
+        <div class="pie" id="piechart">
+        </div>
+        <div class="bar" id="barchart">
+        </div>
+        <script>//post to django
         $(document).ready(function(){
             var token_csrf="{{csrf_token}}";
             var json_data={
@@ -325,7 +339,7 @@
                 if(taon[19]%2==1)json_data.tags.push(19);
                 else json_data.tags.splice(json_data.tags.findIndex((value)=>value==19), 1);
             })
-            
+
             $('#method0').click(function(){json_data.statisticalMethod=0;})//选择方式
             $('#method1').click(function(){json_data.statisticalMethod=1;})
             $('#method2').click(function(){json_data.statisticalMethod=2;})
@@ -336,6 +350,8 @@
                 json_data.tags.splice(0,json_data.tags.length);
                 json_data.statisticalMethod=0;
             })
+            var myChart=echarts.init(document.getElementById('piechart'));
+            var myChart1 = echarts.init(document.getElementById('barchart'));
 
             $('#submit').click(function(){//提交
                 json_data.author=$("#author").val();//选择作者
@@ -349,79 +365,33 @@
                     dataType:"json",
                     data:postdata,
                     success:function(data){
-                        console.log(data)
-                    }
-                });
-            })
-
-        });
-    </script>
-
-    <div class="charts">
-        <div class="chartkind">
-            <button type="button" class="btn btn-outline-primary choice" id="total">总计</button>
-            <button type="button" class="btn btn-outline-secondary choice" id="clicks">点击量</button>
-            <button type="button" class="btn btn-outline-success choice" id="recommends">推荐量</button>
-            <button type="button" class="btn btn-outline-danger choice" id="words">作品字数</button>
-            <button type="button" class="btn btn-outline-warning choice" id="readers">读者数量</button>
-            <button type="button" class="btn btn-outline-info choice" id="gifts">礼物数量</button>
-        </div>
-        <div class="pie" id="piechart">
-            <script type="text/javaScript">
-                var myChart=echarts.init(document.getElementById('piechart')); 
-                $.ajax({
-                    type:'POST',
-                    url:'/request/posttest',
-                    dataType:"json",
-                    error:function (xhr, status, error) {
-                        console.log(error);
-                        console.log('返回错误');
-                    },
-                    success:function (data) {
-                        //data=JSON.parse(data);
                         console.log(data);
-                        var showdata=data.pieChart_Total; 
+                        var showdata=data.pieChart_Total;
                         myChart.setOption({
                          series:[{
-                             name: '分类', 
-                             type: 'pie', 
-                             radius: '60%', 
-                             data: showdata, 
-                             roseType: 'angle', 
-                             label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } },                             
+                             name: '分类',
+                             type: 'pie',
+                             radius: '60%',
+                             data: showdata,
+                             roseType: 'angle',
+                             label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } },
                          }]
                      });
-                        $('#total').click(function(){showdata=data.pieChart_Total;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata, 
+                        $('#total').click(function(){showdata=data.pieChart_Total;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata,
                              roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
-                        $('#clicks').click(function(){showdata=data.pieChart_Clicks;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata, 
+                        $('#clicks').click(function(){showdata=data.pieChart_Clicks;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata,
                              roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
-                        $('#recommends').click(function(){showdata=data.pieChart_Recommedations;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata, 
+                        $('#recommends').click(function(){showdata=data.pieChart_Recommedations;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata,
                              roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
-                        $('#words').click(function(){showdata=data.pieChart_WordCount;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata, 
+                        $('#words').click(function(){showdata=data.pieChart_WordCount;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata,
                              roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
-                        $('#readers').click(function(){showdata=data.pieChart_ReaderCount;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata, 
+                        $('#readers').click(function(){showdata=data.pieChart_ReaderCount;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata,
                              roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
-                        $('#gifts').click(function(){showdata=data.pieChart_GiftCount;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata, 
+                        $('#gifts').click(function(){showdata=data.pieChart_GiftCount;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata,
                              roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
-                    }
-                });
-            </script>
-        </div>
-        <div class="bar" id="barchart">
-            <script type="text/javascript">
-                var myChart1 = echarts.init(document.getElementById('barchart'));
-                $.ajax({
-                    url:'/request/posttest',//改url
-                    dataType:'json',
-                    type:'POST',
-                    error:function (r) {
-                        console.log(data);
-                        console.log('返回错误');
-                    },
-                    success:function (data) { 
-                       //data=JSON.parse(data);
+
                         myChart1.setOption({
-                            xAxis: {      
+                        xAxis: {
                             axisLabel:{
                             interval:0,
                             rotate:-20,
@@ -453,9 +423,10 @@
                             }],
                         });
                     }
-                });                
-            </script>
-        </div>
+                });
+            })
+        });
+    </script>
     </div>
 
 </body>
