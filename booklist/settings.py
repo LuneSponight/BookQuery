@@ -124,6 +124,10 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+import sys
+sys.path.append('/root/django/booklist')
+
 SPARK_MASTER = 'spark://master:7077'
 SPARK_APP_NAME = 'querybook'
 SPARK_EXECUTOR_MEMORY = '500m'
+
