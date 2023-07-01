@@ -265,7 +265,7 @@ def analyse_data(request):
             # read datas from json
             category = json_data['category']
             tags = json_data['tags']
-            author = [] if json_data['author'] == '' else [json_data['author']]
+            author = [] if json_data['author'] == '' else json_data['author'].split(" ")
             statisticalMethod = json_data['statisticalMethod']
 
             query_list = [category, tags, author]
