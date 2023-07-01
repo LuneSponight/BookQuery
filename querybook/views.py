@@ -270,6 +270,8 @@ def analyse_data(request):
 
             query_list = [category, tags, author]
 
+            print(query_list)
+
             # call function from spark
             result = {}
             if statisticalMethod == byCount:
