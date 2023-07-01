@@ -1,10 +1,9 @@
-import sys
-sys.path.append('/root/django/booklist/querybook')
-
-from . import help
+import help
 from pyspark.sql import SparkSession
 
 spark = SparkSession.builder.appName("SparkJDBC").master("spark://master:7077").getOrCreate()
+sc = spark.sparkContext
+sc.addPyFile('help.py')
 url = "jdbc:mysql://192.168.10.1:3306/bookquery"
 properties = {"user": "root", "password": "mysQlSSnig449*"}
 
