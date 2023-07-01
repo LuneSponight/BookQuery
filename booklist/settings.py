@@ -42,7 +42,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-#   "django.middleware.csrf.CsrfViewMiddleware",
+    #   "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -116,6 +116,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 import os
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
 )
@@ -125,9 +126,9 @@ STATICFILES_DIRS = (
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 import sys
-sys.path.append('/root/django/booklist')
+
+sys.path.append('/root/django/booklist/querybook')
 
 SPARK_MASTER = 'spark://master:7077'
 SPARK_APP_NAME = 'querybook'
 SPARK_EXECUTOR_MEMORY = '500m'
-
