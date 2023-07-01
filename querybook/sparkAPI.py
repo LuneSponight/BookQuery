@@ -3,7 +3,7 @@ from pyspark.sql import SparkSession
 
 spark = SparkSession.builder.appName("SparkJDBC").master("spark://master:7077").getOrCreate()
 sc = spark.sparkContext
-sc.addPyFile('qureybook/help.py')
+sc.addPyFile('querybook/help.py')
 
 import help
 url = "jdbc:mysql://192.168.10.1:3306/bookquery"
