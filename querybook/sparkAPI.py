@@ -1,5 +1,7 @@
+import sys
+sys.path.append('/root/django/booklist/querybook')
 
-from . import help
+from . import helpa
 from pyspark.sql import SparkSession
 
 spark = SparkSession.builder.appName("SparkJDBC").master("spark://master:7077").getOrCreate()
