@@ -280,7 +280,7 @@ def analyse_data(request):
                 result = sparkAPI.StatisticsByTag(query_list)
             else:  # should never happen
                 print("Can not identify the query method whose param is statisticsMethod")
-            print(result)
+            print("function result", result)
 
             # json_return format
             json_return = {"pieChart_Total": [],
