@@ -272,6 +272,7 @@ def analyse_data(request):
 
             print(query_list)
 
+
             # call function from spark
             result = {}
             if statisticalMethod == byCount:
