@@ -12,14 +12,14 @@ byCategory = 1
 byTag = 2
 
 
-def index(request):
-    if request.method == 'GET':
-        return render(request, 'index.html')
-
-    if request.method == 'POST':
-        json_data = json.load(request.body)
-        # json经过一系列处理 #
-        return JsonResponse(json_data)
+# def index(request):
+#     if request.method == 'GET':
+#         return render(request, 'index.html')
+#
+#     if request.method == 'POST':
+#         json_data = json.load(request.body)
+#         # json经过一系列处理 #
+#         return JsonResponse(json_data)
 
 
 # 示例
@@ -74,7 +74,7 @@ def get_data(request):
     return JsonResponse(data)
 
 
-def test(request):
+def index(request):
     if request.method == 'GET':
         json_return = {
             "pieChart_Total": [
@@ -236,7 +236,7 @@ def test(request):
             "barChart_novals": ["诛仙", "大道争锋", "升邪", "拔魔", "回到过去变成猫", "赛博时代的魔女", "残袍", "道诡异仙", "诡秘之主", "将夜"],
             "barChart_clicks": [18, 92, 63, 77, 94, 80, 72, 86, 112, 65]
         }
-        return render(request, 'test.html',
+        return render(request, 'index.html',
                       {'json_data': json_return, 'json_str': JsonResponse(json_return).content.decode()})
 
 

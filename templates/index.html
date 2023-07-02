@@ -1,17 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>INDEX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/mycss.css">
+    <script src="https://cdn.staticfile.org/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.2.2/echarts.common.js"></script>
+    <script src="../static/test.json"></script>
+    <title>小说网站数据分析</title>
 </head>
+
 <body>
+    <div class="leftall">
+        <div class="accordion" id="accordionList">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              分类
+            </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionList">
+                    <div class="accordion-body">
+                        <button type="button" class="btn btn-outline-success cabt" id="category0">东方玄幻</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category1">都市激战</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category2">异界大陆</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category3">时空快穿</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category4">历史穿越</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category5">古典仙侠</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category6">蜜爱甜宠</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category7">都市异能</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category8">末世危机</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category9">女尊女强</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category10">都市生活</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category11">架空历史</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category12">兽世王朝</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category13">总裁豪门</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category14">都市重生</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category15">游戏生涯</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category16">奇幻修真</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category17">年代种田</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category18">虚拟网游</button>
+                        <button type="button" class="btn btn-outline-success cabt" id="category19">空间种田</button>
+                    </div>
+                </div>
+            </div>
 
-<h1>Hello world</h1>
-<div>I've changed the html file</div>
-<button id="my-button">点击显示数据</button>
-<div id="data-container"></div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+              标签
+            </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionList">
+                    <div class="accordion-body">
+                        <button type="button" class="btn btn-outline-info tabt" id="tags0">热血</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags1">爽文</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags2">穿越</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags3">重生</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags4">玄幻</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags5">搞笑</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags6">系统</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags7">甜宠</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags8">都市</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags9">升级</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags10">美女</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags11">总裁</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags12">复仇</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags13">种田</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags14">扮猪吃虎</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags15">腹黑</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags16">虐恋</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags17">争霸</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags18">爱情</button>
+                        <button type="button" class="btn btn-outline-info tabt" id="tags19">女强</button>
+                    </div>
+                </div>
+            </div>
 
-<script src="../static/index.js">
+            <div class="selectone">
+                <button type="button" class="btn btn-outline-primary num" id="method0">按照数量统计</button>
+                <button type="button" class="btn btn-outline-primary cat" id="method1">按照分类统计</button>
+                <button type="button" class="btn btn-outline-primary tag" id="method2">按照标签统计</button>
+            </div>
+
+            <div class="selecttwo">
+                <form action="">作者：
+                    <input type="text" , id="author">
+                </form>
+            </div>
+
+            <div class="selectthree">
+                <button type="button" class="btn btn-outline-secondary" id="submit">提交</button>
+                <button type="button" class="btn btn-outline-danger" id="remove">取消</button>
+            </div>
+
+        </div>
+    </div>  
+    <script>//change buttons
+    $('.btn-outline-success').click(function () { $(this).toggleClass('selected1')})//slect and change color
+    $('.btn-outline-info').click(function () { $(this).toggleClass('selected2')})
+    $('.num').click(function(){$(this).addClass('selected3');$('.cat').removeClass('selected3');$('.tag').removeClass('selected3');})
+    $('.cat').click(function(){$(this).addClass('selected3');$('.num').removeClass('selected3');$('.tag').removeClass('selected3');})
+    $('.tag').click(function(){$(this).addClass('selected3');$('.cat').removeClass('selected3');$('.num').removeClass('selected3');})
+    $('#remove').click(function(){
+        $('.btn-outline-success').removeClass('selected1');
+        $('.btn-outline-info').removeClass('selected2');
+        $('.btn-outline-primary').removeClass('selected3');//remove all selections
+    })
+    </script>
+
+    <div class="charts">
+        <div class="chartkind">
+            <button type="button" class="btn btn-outline-primary choice" id="total">总计</button>
+            <button type="button" class="btn btn-outline-secondary choice" id="clicks">点击量</button>
+            <button type="button" class="btn btn-outline-success choice" id="recommends">推荐量</button>
+            <button type="button" class="btn btn-outline-danger choice" id="words">作品字数</button>
+            <button type="button" class="btn btn-outline-warning choice" id="readers">读者数量</button>
+            <button type="button" class="btn btn-outline-info choice" id="gifts">礼物数量</button>
+        </div>
+        <div class="pie" id="piechart">
+        </div>
+        <div class="bar" id="barchart">
+        </div>
+        <script>//post to django
+        $(document).ready(function(){
+            var token_csrf="{{csrf_token}}";
+            var json_data={
+                "category":[],
+                "tags":[],
+                "author":"",
+                "statisticalMethod":0
+            }
+            var caon=[];
+            var taon=[];//to chick if the button is clicked
+            for(var i=0;i<20;i++){caon[i]=0;taon[i]=0;}
+
+            $('#category0').click(function(){//选择分类
+                caon[0]++;
+                if(caon[0]%2==1)json_data.category.push(0);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==0), 1);
+            })
+            $('#category1').click(function(){
+                caon[1]++;
+                if(caon[1]%2==1)json_data.category.push(1);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==1), 1);
+            })
+            $('#category2').click(function(){
+                caon[2]++;
+                if(caon[2]%2==1)json_data.category.push(2);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==2), 1);
+            })
+            $('#category3').click(function(){
+                caon[3]++;
+                if(caon[3]%2==1)json_data.category.push(3);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==3), 1);
+            })
+            $('#category4').click(function(){
+                caon[4]++;
+                if(caon[4]%2==1)json_data.category.push(4);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==4), 1);
+            })
+            $('#category5').click(function(){
+                caon[5]++;
+                if(caon[5]%2==1)json_data.category.push(5);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==5), 1);
+            })
+            $('#category6').click(function(){
+                caon[6]++;
+                if(caon[6]%2==1)json_data.category.push(6);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==6), 1);
+            })
+            $('#category7').click(function(){
+                caon[7]++;
+                if(caon[7]%2==1)json_data.category.push(7);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==7), 1);
+            })
+            $('#category8').click(function(){
+                caon[8]++;
+                if(caon[8]%2==1)json_data.category.push(8);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==8), 1);
+            })
+            $('#category9').click(function(){
+                caon[9]++;
+                if(caon[9]%2==1)json_data.category.push(9);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==9), 1);
+            })
+            $('#category10').click(function(){
+                caon[10]++;
+                if(caon[10]%2==1)json_data.category.push(10);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==10), 1);
+            })
+            $('#category11').click(function(){
+                caon[11]++;
+                if(caon[11]%2==1)json_data.category.push(11);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==11), 1);
+            })
+            $('#category12').click(function(){
+                caon[12]++;
+                if(caon[12]%2==1)json_data.category.push(12);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==12), 1);
+            })
+            $('#category13').click(function(){
+                caon[13]++;
+                if(caon[13]%2==1)json_data.category.push(13);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==13), 1);
+            })
+            $('#category14').click(function(){
+                caon[14]++;
+                if(caon[14]%2==1)json_data.category.push(14);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==14), 1);
+            })
+            $('#category15').click(function(){
+                caon[15]++;
+                if(caon[15]%2==1)json_data.category.push(15);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==15), 1);
+            })
+            $('#category16').click(function(){
+                caon[16]++;
+                if(caon[16]%2==1)json_data.category.push(16);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==16), 1);
+            })
+            $('#category17').click(function(){
+                caon[17]++;
+                if(caon[17]%2==1)json_data.category.push(17);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==17), 1);
+            })
+            $('#category18').click(function(){
+                caon[18]++;
+                if(caon[18]%2==1)json_data.category.push(18);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==18), 1);
+            })
+            $('#category19').click(function(){
+                caon[19]++;
+                if(caon[19]%2==1)json_data.category.push(19);
+                else json_data.category.splice(json_data.category.findIndex((value)=>value==19), 1);
+            })
+
+            $('#tags0').click(function(){//选择标签
+                taon[0]++;
+                if(taon[0]%2==1)json_data.tags.push(0);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==0), 1);//选择分类
+            })
+            $('#tags1').click(function(){
+                taon[1]++;
+                if(taon[1]%2==1)json_data.tags.push(1);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==1), 1);
+            })
+            $('#tags2').click(function(){
+                taon[2]++;
+                if(taon[2]%2==1)json_data.tags.push(2);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==2), 1);
+            })
+            $('#tags3').click(function(){
+                taon[3]++;
+                if(taon[3]%2==1)json_data.tags.push(3);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==3), 1);
+            })
+            $('#tags4').click(function(){
+                taon[4]++;
+                if(taon[4]%2==1)json_data.tags.push(4);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==4), 1);
+            })
+            $('#tags5').click(function(){
+                taon[5]++;
+                if(taon[5]%2==1)json_data.tags.push(5);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==5), 1);
+            })
+            $('#tags6').click(function(){
+                taon[6]++;
+                if(taon[6]%2==1)json_data.tags.push(6);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==6), 1);
+            })
+            $('#tags7').click(function(){
+                taon[7]++;
+                if(taon[7]%2==1)json_data.tags.push(7);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==7), 1);
+            })
+            $('#tags8').click(function(){
+                taon[8]++;
+                if(taon[8]%2==1)json_data.tags.push(8);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==8), 1);
+            })
+            $('#tags9').click(function(){
+                taon[9]++;
+                if(taon[9]%2==1)json_data.tags.push(9);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==9), 1);
+            })
+            $('#tags10').click(function(){
+                taon[10]++;
+                if(taon[10]%2==1)json_data.tags.push(10);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==10), 1);
+            })
+            $('#tags11').click(function(){
+                taon[11]++;
+                if(taon[11]%2==1)json_data.tags.push(11);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==11), 1);
+            })
+            $('#tags12').click(function(){
+                taon[12]++;
+                if(taon[12]%2==1)json_data.tags.push(12);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==12), 1);
+            })
+            $('#tags13').click(function(){
+                taon[13]++;
+                if(taon[13]%2==1)json_data.tags.push(13);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==13), 1);
+            })
+            $('#tags14').click(function(){
+                taon[14]++;
+                if(taon[14]%2==1)json_data.tags.push(14);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==14), 1);
+            })
+            $('#tags15').click(function(){
+                taon[15]++;
+                if(taon[15]%2==1)json_data.tags.push(15);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==15), 1);
+            })
+            $('#tags16').click(function(){
+                taon[16]++;
+                if(taon[16]%2==1)json_data.tags.push(16);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==16), 1);
+            })
+            $('#tags17').click(function(){
+                taon[17]++;
+                if(taon[17]%2==1)json_data.tags.push(17);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==17), 1);
+            })
+            $('#tags18').click(function(){
+                taon[18]++;
+                if(taon[18]%2==1)json_data.tags.push(18);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==18), 1);
+            })
+            $('#tags19').click(function(){
+                taon[19]++;
+                if(taon[19]%2==1)json_data.tags.push(19);
+                else json_data.tags.splice(json_data.tags.findIndex((value)=>value==19), 1);
+            })
+
+            $('#method0').click(function(){json_data.statisticalMethod=0;})//选择方式
+            $('#method1').click(function(){json_data.statisticalMethod=1;})
+            $('#method2').click(function(){json_data.statisticalMethod=2;})
+
+            $('#remove').click(function(){//取消选择
+                for(var i=0;i<20;i++){caon[i]=0;taon[i]=0;}
+                json_data.category.splice(0,json_data.category.length);
+                json_data.tags.splice(0,json_data.tags.length);
+                json_data.statisticalMethod=0;
+            })
+            var myChart=echarts.init(document.getElementById('piechart'));
+            var myChart1 = echarts.init(document.getElementById('barchart'));
+
+            $('#submit').click(function(){//提交
+                json_data.author=$("#author").val();//选择作者
+                var postdata=JSON.stringify(json_data);
+                console.log(postdata);
+                $.ajax({
+                    type:"POST",
+                    contentType: "application/json; charset=utf-8",
+                    headers: { "X-CSRFToken": token_csrf },
+                    url:"/request/posttest",
+                    dataType:"json",
+                    data:postdata,
+                    success:function(data){
+                        console.log(data);
+                        var showdata=data.pieChart_Total;
+                        myChart.setOption({
+                         series:[{
+                             name: '分类',
+                             type: 'pie',
+                             radius: '60%',
+                             data: showdata,
+                             roseType: 'angle',
+                             label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } },
+                         }]
+                     });
+                        $('#total').click(function(){showdata=data.pieChart_Total;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata,
+                             roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
+                        $('#clicks').click(function(){showdata=data.pieChart_Clicks;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata,
+                             roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
+                        $('#recommends').click(function(){showdata=data.pieChart_Recommedations;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata,
+                             roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
+                        $('#words').click(function(){showdata=data.pieChart_WordCount;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata,
+                             roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
+                        $('#readers').click(function(){showdata=data.pieChart_ReaderCount;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata,
+                             roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
+                        $('#gifts').click(function(){showdata=data.pieChart_GiftCount;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata,
+                             roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
+
+                        myChart1.setOption({
+                        xAxis: {
+                            axisLabel:{
+                            interval:0,
+                            rotate:-20,
+                            },
+                            data:data.barChart_novals
+                        },
+                        yAxis: {},
+                        tooltip: {
+				            trigger:'item',
+				            triggerOn:'click',
+				            formatter:function(arg){
+                                console.log(arg)
+                    	        return '《'+arg.name + '》的点击量是：' + arg.data
+                            }
+			            },
+                        series: [{
+                            type: 'bar',
+                            //barWidth: '50%',
+                            data: data.barChart_clicks,
+                            color:'blue',
+                            itemStyle: {
+                                        normal: {
+                                        color: function(params) {
+                                        var colorList = ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83', '#ca8622','#00A3E0','#FFA100', '#ffc0cb', '#CCCCCC', '#BBFFAA','#749f83', '#ca8622'];
+                                        return colorList[params.dataIndex]
+                                        }
+                                    }
+                                }
+                            }],
+                        });
+                    }
+                });
+            })
+        });
+    </script>
+    </div>
 
 </body>
+
 </html>
