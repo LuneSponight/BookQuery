@@ -499,6 +499,6 @@ def analyse_data(request):
                      "category":"111",
                      "update_time":"111",
                      "wordcount":"111",
-                      }
+                      }]
         }
     return JsonResponse(json_return, safe=False)
