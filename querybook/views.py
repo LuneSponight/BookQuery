@@ -453,7 +453,7 @@ def analyse_data(request):
                 }
             ],
             "barChart_novals": ["诛仙", "大道争锋", "升邪", "拔魔", "回到过去变成猫", "赛博时代的魔女", "残袍", "道诡异仙", "诡秘之主", "将夜"],
-            "barChart_clicks": [18, 92, 63, 77, 94, 80, 72, 86, 112, 65]
+            "barChart_clicks": [18, 92, 63, 77, 94, 80, 72, 86, 112, 65],
             "recommend_books": [{
                     "pic_url":"https://static.17k.com/book/189x272/53/26/3212653.jpg-189x272?v=1598414204000",
                     "title":"wewe",
