@@ -564,10 +564,8 @@
                             var categ=bookdata[i].category;
                             var updat=bookdata[i].update_time;
                             var words=bookdata[i].wordcount;
-                            console.log(pic);
-                            console.log(tit);
                             if(i==0){
-                                $(".novel0>.title").attr("href",hyper);$(".noval1>.title").text(tit);//标题
+                                $(".novel0>.title").attr("href",hyper);$(".noval0>.title").text(tit);//标题
                                 $(".novel0>.author").html(auth);//作者
                                 $(".novel0>.img").attr("src",pic);//封面
                                 $(".novel0>.intr>.introduce").html(intr);//简介
@@ -575,7 +573,7 @@
                                 $(".novel0>.other>.update").html(updat);
                                 $(".novel0>.other>.words").html(words);
                             }
-                            if(i==1){
+                            else if(i==1){
                                 $(".novel1>.title").attr("href",hyper);$(".noval1>.title").text(tit);//标题
                                 $(".novel1>.author").html(auth);//作者
                                 $(".novel1>.img").attr("src",pic);//封面
@@ -584,8 +582,8 @@
                                 $(".novel1>.other>.update").html(updat);
                                 $(".novel1>.other>.words").html(words);
                             }
-                            if(i==2){
-                                $(".novel2>.title").attr("href",hyper);$(".noval1>.title").text(tit);//标题
+                            else if(i==2){
+                                $(".novel2>.title").attr("href",hyper);$(".noval2>.title").text(tit);//标题
                                 $(".novel2>.author").html(auth);//作者
                                 $(".novel2>.img").attr("src",pic);//封面
                                 $(".novel2>.intr>.introduce").html(intr);//简介
@@ -593,8 +591,8 @@
                                 $(".novel2>.other>.update").html(updat);
                                 $(".novel2>.other>.words").html(words);
                             }
-                            if(i==3){
-                                $(".novel3>.title").attr("href",hyper);$(".noval1>.title").text(tit);//标题
+                            else if(i==3){
+                                $(".novel3>.title").attr("href",hyper);$(".noval3>.title").text(tit);//标题
                                 $(".novel3>.author").html(auth);//作者
                                 $(".novel3>.img").attr("src",pic);//封面
                                 $(".novel3>.intr>.introduce").html(intr);//简介
@@ -602,8 +600,8 @@
                                 $(".novel3>.other>.update").html(updat);
                                 $(".novel3>.other>.words").html(words);
                             }
-                            if(i==4){
-                                $(".novel4>.title").attr("href",hyper);$(".noval1>.title").text(tit);//标题
+                            else if(i==4){
+                                $(".novel4>.title").attr("href",hyper);$(".noval4>.title").text(tit);//标题
                                 $(".novel4>.author").html(auth);//作者
                                 $(".novel4>.img").attr("src",pic);//封面
                                 $(".novel4>.intr>.introduce").html(intr);//简介
