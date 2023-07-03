@@ -457,7 +457,7 @@ def analyse_data(request):
             "recommend_books": [{
                 "pic_url": "https://static.17k.com/book/189x272/53/26/3212653.jpg-189x272?v=1598414204000",
                 "title": "wewe",
-                "introduce": "111",
+                "introduce": "1wenjweouanlsdkf特别多大字数测试骄傲sogjwqoignqwngoqjiogjqjoqjofjwjfoqjfwfqiofjoqjfljfowfwlfwjlfjwnoanowanfw11",
                 "author": "111",
                 "hyperlink": "https://www.17k.com/book/3212653.html",
                 "category": "111",
