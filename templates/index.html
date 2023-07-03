@@ -535,22 +535,34 @@
         </div>
         <div class="col-md-8">
             <a class="h1" target="_blank" href="${hyper}">${tit}</a><br>
-            <h4 style="display: inline;">作者：</h4><h4>${auth}</h4><br>
+            <div class="author">
+                <h4>作者：</h4><h4>${auth}</h4>
+            </div>
             <div class="intr">
                 <h5>作品简介：</h5>
                 <p>${intr}</p>
             </div>
             <div class="other">
-                <h3 style="display: inline;">分类：</h3>
-                <h3 style="display: inline;">${categ}</h3>
-                <h3 style="display: inline;">&emsp;&emsp;&emsp;&emsp;&emsp;更新时间：</h3>
-                <h3 style="display: inline;">${updat}</h3>
-                <h3 style="display: inline;">&emsp;&emsp;&emsp;&emsp;&emsp;总字数：</h3>
-                <h3 style="display: inline;">${words}</h3>
+                <div class="row">
+                    <div class="col">
+                        <h3>分类：</h3><h3>${categ}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3>更新时间：</h3><h3>${updat}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3>总字数：</h3><h3>${words}</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
                                 `;
                                 $(novel).html(htmlContent);
