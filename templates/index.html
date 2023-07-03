@@ -565,7 +565,8 @@
                             var updat=bookdata[i].update_time;
                             var words=bookdata[i].wordcount;
                             var novel=".novel"+i+">.innovel";
-                                $("novel>.title").attr("href",hyper);$("novel>.title").text(tit);//标题
+                                $("novel>.title").click(function(){$("novel>.title").attr("href",hyper);});
+                                $("novel>.title").text(tit);//标题
                                 $("novel>.author").html(auth);//作者
                                 $("novel>.img").attr("src",pic);//封面
                                 $("novel>.intr>.introduce").html(intr);//简介
