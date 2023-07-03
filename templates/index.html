@@ -528,41 +528,30 @@
 
                                 var novel = ".novel" + i;
                                 var htmlContent = `
-                                    <div class="col innovel">
+                                    <div class="col">
     <div class="row">
         <div class="col-md-4">
             <img class="img" src="${pic}" alt="unknow" width="240px" height="300px">
         </div>
         <div class="col-md-8">
-            <div class="row">
-                <div class="col">
-                    <a class="h1 title" target="_blank" href="${hyper}">${tit}</a><br>
-                    <h4 style="display: inline;">作者：</h4><h4 class="author" style="display: inline;">${auth}</h4><br>
-                </div>
+            <a class="h1" target="_blank" href="${hyper}">${tit}</a><br>
+            <h4 style="display: inline;">作者：</h4><h4>${auth}</h4><br>
+            <div class="intr">
+                <h5>作品简介：</h5>
+                <p>${intr}</p>
             </div>
-            <div class="row">
-                <div class="col">
-                    <div class="intr">
-                        <h5>作品简介：</h5>
-                        <p class="introduce">${intr}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="other">
-                        <h3 style="display: inline;">分类：</h3>
-                        <h3 class="cate" style="display: inline;">${categ}</h3>
-                        <h3 style="display: inline;">&emsp;&emsp;&emsp;&emsp;&emsp;更新时间：</h3>
-                        <h3 class="update" style="display: inline;">${updat}</h3>
-                        <h3 style="display: inline;">&emsp;&emsp;&emsp;&emsp;&emsp;总字数：</h3>
-                        <h3 class="words" style="display: inline;">${words}</h3>
-                    </div>
-                </div>
+            <div class="other">
+                <h3 style="display: inline;">分类：</h3>
+                <h3 style="display: inline;">${categ}</h3>
+                <h3 style="display: inline;">&emsp;&emsp;&emsp;&emsp;&emsp;更新时间：</h3>
+                <h3 style="display: inline;">${updat}</h3>
+                <h3 style="display: inline;">&emsp;&emsp;&emsp;&emsp;&emsp;总字数：</h3>
+                <h3 style="display: inline;">${words}</h3>
             </div>
         </div>
     </div>
 </div>
+
                                 `;
                                 $(novel).html(htmlContent);
                             }
