@@ -528,7 +528,7 @@
 
                                 var novel = ".novel" + i;
                                 var htmlContent = `
-                                    <div class="col">
+<div class="col">
     <div class="row">
         <div class="col-md-4">
             <img class="img" src="${pic}" alt="unknow" width="240px" height="300px">
@@ -536,7 +536,7 @@
         <div class="col-md-8">
             <a class="h1" target="_blank" href="${hyper}">${tit}</a><br>
             <div class="author">
-                <h4>作者：</h4><h4>${auth}</h4>
+                <h4>作者：<span>${auth}</span></h4>
             </div>
             <div class="intr">
                 <h5>作品简介：</h5>
@@ -545,26 +545,24 @@
             <div class="other">
                 <div class="row">
                     <div class="col">
-                        <h3>分类：</h3><h3>${categ}</h3>
+                        <h3>分类：<span>${categ}</span></h3>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h3>更新时间：</h3><h3>${updat}</h3>
+                        <h3>更新时间：<span>${updat}</span></h3>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h3>总字数：</h3><h3>${words}</h3>
+                        <h3>总字数：<span>${words}</span></h3>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-                                `;
+ `;
                                 $(novel).html(htmlContent);
                             }
                         }
