@@ -323,4 +323,9 @@ def RecommendByAuthorAndNovelName(AuthorList, NovelNameList):
                         , "https://www.17k.com/book/" + x[4] + ".html", CategoryID_CategoryName_Dict[x[5]], str(x[6]),
                         x[7])).take(5)
 
-# RecommendaByReadNovel("三国的女人")
+    JsonRecommendNovelListBySameAuthor = help.ConvertRecommendNovelListToJsonFormat(RecommendNovelListBySameAuthor)
+    JsonRecommendNovelListBySameCategory = help.ConvertRecommendNovelListToJsonFormat(RecommendNovelListBySameCategory)
+    JsonRecommendNovelListBySameTag = help.ConvertRecommendNovelListToJsonFormat(RecommendNovelListBySameTag)
+
+    return help.MakeReturnJsonRecommendNovelListByThree(
+        JsonRecommendNovelListBySameAuthor, JsonRecommendNovelListBySameCategory, JsonRecommendNovelListBySameTag)
