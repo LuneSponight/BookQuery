@@ -230,7 +230,7 @@ def index(request):
                       {'json_data': json_return, 'json_str': JsonResponse(json_return).content.decode()})
 
 
-def manage_json(result, json_return):
+def manage_json(result, result_rec, json_return):
     json_return['pieChart_Total'] = result['总计']
     json_return['pieChart_Clicks'] = result['点击量']
     json_return['pieChart_Recommedations'] = result['总推荐票']
@@ -239,7 +239,7 @@ def manage_json(result, json_return):
     json_return['pieChart_ReaderCount'] = result['读者数量']
     json_return['barChart_novals'] = result['barchart_novels']
     json_return['barChart_clicks'] = result['barchart_clicks']
-    json_return['recommend_books'] = result['recommend_books']
+    json_return['recommend_books'] = result_rec
     return json_return
 
 
@@ -260,12 +260,13 @@ def analyse_data(request):
             likes = [] if json_data['likes'] == '' else json_data['likes']
             statisticalMethod = json_data['statisticalMethod']
 
-            query_list = [category, tags, author, likes]
+            query_list = [category, tags, author]
 
             print(query_list)
 
             # call function from spark
             result = {}
+            result_recommend = []
             if statisticalMethod == byCount:
                 result = sparkAPI.StatisticsByCount(query_list)
             elif statisticalMethod == byCategory:
@@ -275,7 +276,10 @@ def analyse_data(request):
             else:  # should never happen
                 print("Can not identify the query method whose param is statisticsMethod")
 
+            result_recommend = sparkAPI.RecommendByAuthorAndNovelName(author, likes)
+
             print("function result", result)
+            print("recommend", result_recommend)
 
             # json_return format
             json_return = {"pieChart_Total": [],
@@ -288,7 +292,7 @@ def analyse_data(request):
                            "barChart_clicks": [],
                            "recommend_books": []}
 
-            json_return = manage_json(result, json_return)
+            json_return = manage_json(result, result_recommend, json_return)
         except Exception as e:
             print(e)
 
