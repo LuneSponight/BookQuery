@@ -1,4 +1,3 @@
-
 from pyspark.sql import SparkSession
 
 spark = SparkSession.builder.appName("SparkJDBC").master("spark://master:7077").getOrCreate()
@@ -6,9 +5,9 @@ sc = spark.sparkContext
 sc.addPyFile('querybook/help.py')
 
 import help
+
 url = "jdbc:mysql://192.168.10.1:3306/bookquery"
 properties = {"user": "root", "password": "mysQlSSnig449*"}
-
 
 Author = spark.read.jdbc(url=url, table="Author", properties=properties)
 Novel = spark.read.jdbc(url=url, table="Novel", properties=properties)

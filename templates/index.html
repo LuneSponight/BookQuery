@@ -87,10 +87,15 @@
             </div>
 
             <div class="selecttwo">
-                <form action="">作者：
-                    <input type="text" , id="author">
+                <form action="">作者：<br>
+                    <input type="text" id="author" size="40">
+                </form>
+                <form action="">偏好书籍：<br>
+                    <input type="text" style="display: none;" />
+                    <input type="text" id="like" placeholder="输入后请回车" size="40">
                 </form>
             </div>
+            <div class="likes"></div>
 
             <div class="selectthree">
                 <button type="button" class="btn btn-outline-secondary" id="submit">提交</button>
@@ -98,7 +103,7 @@
             </div>
 
         </div>
-    </div>  
+    </div>
     <script>//change buttons
     $('.btn-outline-success').click(function () { $(this).toggleClass('selected1')})//slect and change color
     $('.btn-outline-info').click(function () { $(this).toggleClass('selected2')})
@@ -125,6 +130,118 @@
         </div>
         <div class="bar" id="barchart">
         </div>
+        <div class="foryou container">
+            <div class="row border border-primary">
+                <div class="col" style="text-align: center;">
+                    <span class="h1 font-weight-normal ml-2 maylike">你可能喜欢：</span>
+                </div>
+            </div>
+            <div class="row border border-secondary novel0">
+                <div class="col">
+                    <a class="h1 title" target="_blank">title</a><br>
+                    <h4 style="display: inline;">作者：</h4><h4 class="author" style="display: inline;">author</h4><br>
+                    <img class="img" src="blame2.jpg" alt="unknow" width="240px" height="300px"style="display: inline-block; position: relative; top: 20px;">
+                    <div class="intr" style="display: inline-block;">
+                        <h5>作品简介：</h5>
+                        <p class="introduce">
+                            nothing now.
+                        </p>
+                    </div>
+                    <div class="other" style="display: inline-block;">
+                        <h3 style="display: inline;">分类：</h3>
+                        <h3 class="cate" style="display: inline;">热血</h3>
+                        <h3 style="display: inline;">&emsp;&emsp;&emsp;&emsp;&emsp;更新时间：</h3>
+                        <h3 class="update" style="display: inline;">2001.1.1</h3>
+                        <h3 style="display: inline;">&emsp;&emsp;&emsp;&emsp;&emsp;总字数：</h3>
+                        <h3 class="words" style="display: inline;">100万字</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row border border-success novel1">
+                <div class="col">
+                    <a class="h1 title" target="_blank">title</a><br>
+                    <h4 style="display: inline;">作者：</h4><h4 class="author" style="display: inline;">author</h4><br>
+                    <img class="img" src="blame2.jpg" alt="unknow" width="240px" height="300px"style="display: inline-block; position: relative; top: 20px;">
+                    <div class="intr" style="display: inline-block;">
+                        <h5>作品简介：</h5>
+                        <p class="introduce">
+                            nothing now.
+                        </p>
+                    </div>
+                    <div class="other" style="display: inline-block;">
+                        <h3 style="display: inline;">分类：</h3>
+                        <h3 class="cate" style="display: inline;">热血</h3>
+                        <h3 style="display: inline;">&emsp;&emsp;&emsp;&emsp;&emsp;更新时间：</h3>
+                        <h3 class="update" style="display: inline;">2001.1.1</h3>
+                        <h3 style="display: inline;">&emsp;&emsp;&emsp;&emsp;&emsp;总字数：</h3>
+                        <h3 class="words" style="display: inline;">100万字</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row border border-danger novel2">
+                <div class="col">
+                    <a class="h1 title" target="_blank">title</a><br>
+                    <h4 style="display: inline;">作者：</h4><h4 class="author" style="display: inline;">author</h4><br>
+                    <img class="img" src="blame2.jpg" alt="unknow" width="240px" height="300px"style="display: inline-block; position: relative; top: 20px;">
+                    <div class="intr" style="display: inline-block;">
+                        <h5>作品简介：</h5>
+                        <p class="introduce">
+                            nothing now.
+                        </p>
+                    </div>
+                    <div class="other" style="display: inline-block;">
+                        <h3 style="display: inline;">分类：</h3>
+                        <h3 class="cate" style="display: inline;">热血</h3>
+                        <h3 style="display: inline;">&emsp;&emsp;&emsp;&emsp;&emsp;更新时间：</h3>
+                        <h3 class="update" style="display: inline;">2001.1.1</h3>
+                        <h3 style="display: inline;">&emsp;&emsp;&emsp;&emsp;&emsp;总字数：</h3>
+                        <h3 class="words" style="display: inline;">100万字</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row border border-warning novel3">
+                <div class="col">
+                    <a class="h1 title" target="_blank">title</a><br>
+                    <h4 style="display: inline;">作者：</h4><h4 class="author" style="display: inline;">author</h4><br>
+                    <img class="img" src="blame2.jpg" alt="unknow" width="240px" height="300px"style="display: inline-block; position: relative; top: 20px;">
+                    <div class="intr" style="display: inline-block;">
+                        <h5>作品简介：</h5>
+                        <p class="introduce">
+                            nothing now.
+                        </p>
+                    </div>
+                    <div class="other" style="display: inline-block;">
+                        <h3 style="display: inline;">分类：</h3>
+                        <h3 class="cate" style="display: inline;">热血</h3>
+                        <h3 style="display: inline;">&emsp;&emsp;&emsp;&emsp;&emsp;更新时间：</h3>
+                        <h3 class="update" style="display: inline;">2001.1.1</h3>
+                        <h3 style="display: inline;">&emsp;&emsp;&emsp;&emsp;&emsp;总字数：</h3>
+                        <h3 class="words" style="display: inline;">100万字</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row border border-info novel4">
+                <div class="col">
+                    <a class="h1 title" target="_blank">title</a><br>
+                    <h4 style="display: inline;">作者：</h4><h4 class="author" style="display: inline;">author</h4><br>
+                    <img class="img" src="blame2.jpg" alt="unknow" width="240px" height="300px"style="display: inline-block; position: relative; top: 20px;">
+                    <div class="intr" style="display: inline-block;">
+                        <h5>作品简介：</h5>
+                        <p class="introduce">
+                            nothing now.
+                        </p>
+                    </div>
+                    <div class="other" style="display: inline-block;">
+                        <h3 style="display: inline;">分类：</h3>
+                        <h3 class="cate" style="display: inline;">热血</h3>
+                        <h3 style="display: inline;">&emsp;&emsp;&emsp;&emsp;&emsp;更新时间：</h3>
+                        <h3 class="update" style="display: inline;">2001.1.1</h3>
+                        <h3 style="display: inline;">&emsp;&emsp;&emsp;&emsp;&emsp;总字数：</h3>
+                        <h3 class="words" style="display: inline;">100万字</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script>//post to django
         $(document).ready(function(){
             var token_csrf="{{csrf_token}}";
@@ -132,6 +249,7 @@
                 "category":[],
                 "tags":[],
                 "author":"",
+                "likes":[],
                 "statisticalMethod":0
             }
             var caon=[];
@@ -344,11 +462,23 @@
             $('#method1').click(function(){json_data.statisticalMethod=1;})
             $('#method2').click(function(){json_data.statisticalMethod=2;})
 
+            $("#like").keypress(function(event){
+                var templike=$("#like").val();
+                if(event.keyCode==13){
+                    $(".likes").append("<input type='button' class='btn-outline-danger tl' style='font-size: 17px; margin-top: 4px; margin-left:10px'>");//添加偏好
+                    $(".tl:last-child").val(templike);
+                    json_data.likes.push(templike);
+                    }
+            })
+            $(".likes").delegate(".tl","click",function(){var tempdelete=$(this).val();$(this).remove();json_data.likes.splice(json_data.likes.findIndex((value)=>value==tempdelete),1);})//点击删除
+
             $('#remove').click(function(){//取消选择
                 for(var i=0;i<20;i++){caon[i]=0;taon[i]=0;}
                 json_data.category.splice(0,json_data.category.length);
                 json_data.tags.splice(0,json_data.tags.length);
                 json_data.statisticalMethod=0;
+                json_data.likes.splice(0,json_data.likes.length);
+                $(".tl").remove();
             })
             var myChart=echarts.init(document.getElementById('piechart'));
             var myChart1 = echarts.init(document.getElementById('barchart'));
@@ -367,6 +497,7 @@
                     success:function(data){
                         console.log(data);
                         var showdata=data.pieChart_Total;
+                        //饼状图
                         myChart.setOption({
                          series:[{
                              name: '分类',
@@ -389,7 +520,7 @@
                              roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
                         $('#gifts').click(function(){showdata=data.pieChart_GiftCount;myChart.setOption({series:[{name: '分类',type: 'pie', radius: '60%', data: showdata,
                              roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }}]});});
-
+                        //柱状图
                         myChart1.setOption({
                         xAxis: {
                             axisLabel:{
@@ -409,7 +540,6 @@
 			            },
                         series: [{
                             type: 'bar',
-                            //barWidth: '50%',
                             data: data.barChart_clicks,
                             color:'blue',
                             itemStyle: {
@@ -422,6 +552,63 @@
                                 }
                             }],
                         });
+                        //推荐小说
+                        var bookdata=data.recommend_books;
+                        for(var i=0;i<bookdata.length;i++){
+                            var pic=bookdata[i].pic_url;
+                            var tit=bookdata[i].title;
+                            var intr=bookdata[i].introduce;
+                            var auth=bookdata[i].author;
+                            var hyper=bookdata[i].hyperlink;
+                            var categ=bookdata[i].category;
+                            var updat=bookdata[i].update_time;
+                            var words=bookdata[i].wordcount;
+                            if(i==0){
+                                $(".novel0>.title").attr("href",hyper);$(".noval1>.title").text(tit);//标题
+                                $(".novel0>.author").html(auth);//作者
+                                $(".novel0>.img").attr("src",pic);//封面
+                                $(".novel0>.intr>.introduce").html(intr);//简介
+                                $(".novel0>.other>.cate").html(categ);//其他
+                                $(".novel0>.other>.update").html(updat);
+                                $(".novel0>.other>.words").html(words);
+                            }
+                            if(i==1){
+                                $(".novel1>.title").attr("href",hyper);$(".noval1>.title").text(tit);//标题
+                                $(".novel1>.author").html(auth);//作者
+                                $(".novel1>.img").attr("src",pic);//封面
+                                $(".novel1>.intr>.introduce").html(intr);//简介
+                                $(".novel1>.other>.cate").html(categ);
+                                $(".novel1>.other>.update").html(updat);
+                                $(".novel1>.other>.words").html(words);
+                            }
+                            if(i==2){
+                                $(".novel2>.title").attr("href",hyper);$(".noval1>.title").text(tit);//标题
+                                $(".novel2>.author").html(auth);//作者
+                                $(".novel2>.img").attr("src",pic);//封面
+                                $(".novel2>.intr>.introduce").html(intr);//简介
+                                $(".novel2>.other>.cate").html(categ);
+                                $(".novel2>.other>.update").html(updat);
+                                $(".novel2>.other>.words").html(words);
+                            }
+                            if(i==3){
+                                $(".novel3>.title").attr("href",hyper);$(".noval1>.title").text(tit);//标题
+                                $(".novel3>.author").html(auth);//作者
+                                $(".novel3>.img").attr("src",pic);//封面
+                                $(".novel3>.intr>.introduce").html(intr);//简介
+                                $(".novel3>.other>.cate").html(categ);
+                                $(".novel3>.other>.update").html(updat);
+                                $(".novel3>.other>.words").html(words);
+                            }
+                            if(i==4){
+                                $(".novel4>.title").attr("href",hyper);$(".noval1>.title").text(tit);//标题
+                                $(".novel4>.author").html(auth);//作者
+                                $(".novel4>.img").attr("src",pic);//封面
+                                $(".novel4>.intr>.introduce").html(intr);//简介
+                                $(".novel4>.other>.cate").html(categ);
+                                $(".novel4>.other>.update").html(updat);
+                                $(".novel4>.other>.words").html(words);
+                            }
+                        }
                     }
                 });
             })

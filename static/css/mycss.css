@@ -1,4 +1,5 @@
 .leftall {
+    overflow-y:scroll;
     width: 400px;
     height: 100%;
     position: fixed;
@@ -7,7 +8,7 @@
 
 .charts {
     width: 1120px;
-    height: 1400px;
+    height: 4000px;
     left: 400px;
     background-color: aliceblue;
     position: relative;
@@ -48,6 +49,13 @@
     left: 50px;
     position: absolute;
 }
+.foryou{
+    width: 1000px;
+    height: 2500px;
+    top: 1500px;
+    left: 20px;
+    position: absolute;
+}
 .btn-outline-success.selected1{
     background-color: #abf8ee;
 }
@@ -67,4 +75,17 @@
 }
 .choice{
     width: 100px;
+}
+#submit{
+    margin-left: 10px;
+}
+#remove{
+    margin-left: 10px;
+}
+.intr{
+    width: 650px;
+    height: 250px;
+    left: 50px;
+    top: -80px;
+    position: relative;
 }
