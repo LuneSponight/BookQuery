@@ -495,6 +495,7 @@
                                     trigger: 'item',
                                     triggerOn: 'click',
                                     formatter: function (arg) {
+                                        console.log("test novel name")
                                         console.log(arg)
                                         return '《' + arg.name + '》的点击量是：' + arg.data
                                     }
