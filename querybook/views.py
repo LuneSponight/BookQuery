@@ -290,8 +290,8 @@ def analyse_data(request):
         #                    "recommend_books": []}
         #
         #     json_return = manage_json(result, json_return)
-        # except Exception as e:
-        #     print(e)
+        except Exception as e:
+            print(e)
 
         print(json_return)
 
