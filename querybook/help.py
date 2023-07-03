@@ -1,121 +1,75 @@
-def AddMonthlyClicksKey(x):
-    if int(x[1]) < 100:
-        return "月点击<100"
-    elif int(x[1]) < 1000:
-        return "100<月点击<1000"
-    elif int(x[1]) < 10000:
-        return "1000<月点击<10000"
-    else:
-        return "月点击>10000"
-
-
-def AddMonthlyRecommendationsKey(x):
-    if int(x[1]) < 100:
-        return "月推荐票<100"
-    elif int(x[1]) < 1000:
-        return "100<月推荐票<1000"
-    elif int(x[1]) < 10000:
-        return "1000<月推荐票<10000"
-    else:
-        return "月推荐票>10000"
-
-
-def AddReaderCountKey(x):
-    if int(x[1]) < 1000000:
-        return "读者量<一百万"
-    elif int(x[1]) < 5000000:
-        return "一百万<读者量<五百万"
-    elif int(x[1]) < 10000000:
-        return "五百万<读者量<一千万"
-    elif int(x[1]) < 50000000:
-        return "一千万<读者量<五千万"
-    elif int(x[1]) < 100000000:
-        return "五千万<读者量<一亿"
-    else:
-        return "读者量>一亿"
-
-
-def AddWordCountKey(x):
-    if int(x[1]) < 1000000:
-        return "字数<一百万"
-    elif int(x[1]) < 5000000:
-        return "一百万<字数<五百万"
-    elif int(x[1]) < 10000000:
-        return "五百万<字数<一千万"
-    elif int(x[1]) < 50000000:
-        return "一千万<字数<五千万"
-    elif int(x[1]) < 100000000:
-        return "五千万<字数<一亿"
-    else:
-        return "字数>一亿"
-
-
 def ConvertToValidStr(x):
     return x.replace(",", "").split(".")[0]
 
 
-def AddGiftCountKey(x):
-    if int(ConvertToValidStr(x[1])) < 100:
-        return "礼物数<100"
-    elif int(ConvertToValidStr(x[1])) < 1000:
-        return "100<礼物数<1000"
-    elif int(ConvertToValidStr(x[1])) < 10000:
-        return "1000<礼物数<10000"
-    elif int(ConvertToValidStr(x[1])) < 50000:
-        return "10000<礼物数<50000"
-    elif int(ConvertToValidStr(x[1])) < 100000:
-        return "50000<礼物数<100000"
+def ConvertToBeatifuleNumber(number):
+    length = len(str(number))
+    if length <= 2:
+        dividenumber = number / pow(10, length - 1)
+        return int(round(dividenumber, 0) * pow(10, length - 1))
     else:
-        return "礼物数>100000"
+        dividenumber = number / pow(10, length - 2)
+        return int(round(dividenumber, 0) * pow(10, length - 2))
 
 
-def AddTotalRecommencdationsKey(x):
-    if int(ConvertToValidStr(x[1])) < 10000:
-        return "总推荐票<10000"
-    elif int(ConvertToValidStr(x[1])) < 50000:
-        return "10000<总推荐票<50000"
-    elif int(ConvertToValidStr(x[1])) < 100000:
-        return "50000<总推荐票<100000"
-    elif int(ConvertToValidStr(x[1])) < 500000:
-        return "100000<总推荐票<500000"
-    elif int(ConvertToValidStr(x[1])) < 1000000:
-        return "500000<总推荐票<1000000"
-    elif int(ConvertToValidStr(x[1])) < 5000000:
-        return "1000000<总推荐票<5000000"
+def RandomSelectShowGradient(length):
+    if length < 20:
+        return [1 / 9, 2 / 9, 5.95 / 9]
+    elif length < 100:
+        return [2 / 9, 2 / 9, 4.95 / 9]
+    elif length < 150:
+        return [2 / 9, 3 / 9, 3.95 / 9]
+    elif length < 400:
+        return [1 / 8, 1 / 8, 3 / 8, 2.95 / 8]
+    elif length < 600:
+        return [1 / 8, 2 / 8, 2 / 8, 2.95 / 8]
+    elif length < 800:
+        return [2 / 16, 3 / 16, 5 / 16, 5.95 / 16]
+    elif length < 1000:
+        return [3 / 16, 4 / 16, 4 / 16, 4.95 / 16]
+    elif length < 1400:
+        return [1 / 16, 2 / 16, 5 / 16, 7.95 / 16]
+    elif length < 1600:
+        return [2 / 15, 3 / 15, 3 / 15, 3 / 15, 3.95 / 15]
+    elif length < 2000:
+        return [1 / 15, 2 / 15, 3 / 15, 4 / 15, 4.95 / 15]
+    elif length < 2500:
+        return [3 / 25, 4 / 25, 4 / 25, 6 / 25, 7.95 / 25]
+    elif length < 3000:
+        return [2 / 25, 4 / 25, 5 / 25, 7 / 25, 6.95 / 25]
+    elif length < 3500:
+        return [3 / 36, 4 / 36, 6 / 36, 7 / 36, 8 / 36, 7.95 / 36]
+    elif length < 4000:
+        return [2 / 36, 3 / 36, 5 / 36, 7 / 36, 9 / 36, 9.95 / 36]
     else:
-        return "总推荐票>5000000"
+        return [4 / 36, 4 / 36, 6 / 36, 7 / 36, 7 / 36, 7.95 / 36]
 
 
-def AddTotalFansKey(x):
-    if int(ConvertToValidStr(x[1])) < 500000:
-        return "粉丝值<500000"
-    elif int(ConvertToValidStr(x[1])) < 1000000:
-        return "500000<粉丝值<1000000"
-    elif int(ConvertToValidStr(x[1])) < 5000000:
-        return "1000000<粉丝值<5000000"
-    elif int(ConvertToValidStr(x[1])) < 10000000:
-        return "5000000<粉丝值<10000000"
-    elif int(ConvertToValidStr(x[1])) < 50000000:
-        return "10000000<粉丝值<50000000"
-    elif int(ConvertToValidStr(x[1])) < 100000000:
-        return "50000000<粉丝值<100000000"
-    else:
-        return "粉丝值>100000000"
+def MakeKeyDict(ZhibiaoList, ZhiBiaoName):
+    Gradients = RandomSelectShowGradient(len(ZhibiaoList))
+    AccumuldateGradient = 0
+    SplitDatasList = []
+    Length = len(ZhibiaoList)
+    for gradient in Gradients:
+        AccumuldateGradient += gradient
+        if ZhibiaoList[int(Length * AccumuldateGradient)] not in SplitDatasList:
+            SplitDatasList.append(ZhibiaoList[int(Length * AccumuldateGradient)])
+    SplitDatasList[len(SplitDatasList) - 1] = ZhibiaoList[len(ZhibiaoList) - 1] + 1
+    AddKeyDict = {}
+    for i in range(len(SplitDatasList)):
+        if i == 0:
+            AddKeyDict[SplitDatasList[i]] = ZhiBiaoName + "<=" + str(ConvertToBeatifuleNumber(SplitDatasList[i]))
+        else:
+            AddKeyDict[SplitDatasList[i]] = str(ConvertToBeatifuleNumber(SplitDatasList[i - 1])) \
+                                            + "<" + ZhiBiaoName + "<=" + str(
+                ConvertToBeatifuleNumber(SplitDatasList[i]))
+    return AddKeyDict
 
 
-def AddCommentCountKey(x):
-    if int(x[1]) < 100:
-        return "评论数<100"
-    elif int(x[1]) < 500:
-        return "100<评论数<500"
-    elif int(x[1]) < 1000:
-        return "500<评论数<1000"
-    elif int(x[1]) < 5000:
-        return "1000<评论数<5000"
-    elif int(x[1]) < 10000:
-        return "5000<评论数<10000"
-    else:
-        return "评论数>10000"
+def AddKey(AddKeyDict, x):
+    for key, value in AddKeyDict.items():
+        if int(ConvertToValidStr(x[1])) <= key:
+            return value
 
 
 def JudgeByThree(x, Select_list, Valid_list):
