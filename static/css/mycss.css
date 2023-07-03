@@ -9,7 +9,9 @@
 .charts {
     width: 1120px;
     height: 4000px;
+    left: 400px;
     background-color: aliceblue;
+    position: relative;
 }
 
 .selectone {
@@ -49,9 +51,6 @@
 }
 .foryou{
     width:1000px;
-    top: 1500px;
-    left: 20px;
-    position: absolute;
 }
 .btn-outline-success.selected1{
     background-color: #abf8ee;
