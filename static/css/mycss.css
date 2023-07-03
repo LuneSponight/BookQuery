@@ -1,12 +1,13 @@
 .leftall {
     overflow-y:scroll;
-    width: 400px;
+    width: 30%;
     height: 100%;
     position: fixed;
     background-color: aliceblue;
 }
 
 .charts {
+width:69%;
     height: 4000px;
     left: 400px;
     background-color: aliceblue;
