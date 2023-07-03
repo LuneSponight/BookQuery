@@ -137,7 +137,7 @@
                 </div>
             </div>
             <div class="row border border-secondary novel0">
-                <div class="col">
+                <div class="col innovel">
                     <a class="h1 title" target="_blank">title</a><br>
                     <h4 style="display: inline;">作者：</h4><h4 class="author" style="display: inline;">author</h4><br>
                     <img class="img" src="blame2.jpg" alt="unknow" width="240px" height="300px"style="display: inline-block; position: relative; top: 20px;">
@@ -158,7 +158,7 @@
                 </div>
             </div>
             <div class="row border border-success novel1">
-                <div class="col">
+                <div class="col innovel">
                     <a class="h1 title" target="_blank">title</a><br>
                     <h4 style="display: inline;">作者：</h4><h4 class="author" style="display: inline;">author</h4><br>
                     <img class="img" src="blame2.jpg" alt="unknow" width="240px" height="300px"style="display: inline-block; position: relative; top: 20px;">
@@ -179,7 +179,7 @@
                 </div>
             </div>
             <div class="row border border-danger novel2">
-                <div class="col">
+                <div class="col innovel">
                     <a class="h1 title" target="_blank">title</a><br>
                     <h4 style="display: inline;">作者：</h4><h4 class="author" style="display: inline;">author</h4><br>
                     <img class="img" src="blame2.jpg" alt="unknow" width="240px" height="300px"style="display: inline-block; position: relative; top: 20px;">
@@ -200,7 +200,7 @@
                 </div>
             </div>
             <div class="row border border-warning novel3">
-                <div class="col">
+                <div class="col innovel">
                     <a class="h1 title" target="_blank">title</a><br>
                     <h4 style="display: inline;">作者：</h4><h4 class="author" style="display: inline;">author</h4><br>
                     <img class="img" src="blame2.jpg" alt="unknow" width="240px" height="300px"style="display: inline-block; position: relative; top: 20px;">
@@ -221,7 +221,7 @@
                 </div>
             </div>
             <div class="row border border-info novel4">
-                <div class="col">
+                <div class="col innovel">
                     <a class="h1 title" target="_blank">title</a><br>
                     <h4 style="display: inline;">作者：</h4><h4 class="author" style="display: inline;">author</h4><br>
                     <img class="img" src="blame2.jpg" alt="unknow" width="240px" height="300px"style="display: inline-block; position: relative; top: 20px;">
@@ -564,51 +564,14 @@
                             var categ=bookdata[i].category;
                             var updat=bookdata[i].update_time;
                             var words=bookdata[i].wordcount;
-                            if(i==0){
-                                $(".novel0>.title").attr("href",hyper);$(".noval0>.title").text(tit);//标题
-                                $(".novel0>.author").html(auth);//作者
-                                $(".novel0>.img").attr("src",pic);//封面
-                                $(".novel0>.intr>.introduce").html(intr);//简介
-                                $(".novel0>.other>.cate").html(categ);//其他
-                                $(".novel0>.other>.update").html(updat);
-                                $(".novel0>.other>.words").html(words);
-                            }
-                            else if(i==1){
-                                $(".novel1>.title").attr("href",hyper);$(".noval1>.title").text(tit);//标题
-                                $(".novel1>.author").html(auth);//作者
-                                $(".novel1>.img").attr("src",pic);//封面
-                                $(".novel1>.intr>.introduce").html(intr);//简介
-                                $(".novel1>.other>.cate").html(categ);
-                                $(".novel1>.other>.update").html(updat);
-                                $(".novel1>.other>.words").html(words);
-                            }
-                            else if(i==2){
-                                $(".novel2>.title").attr("href",hyper);$(".noval2>.title").text(tit);//标题
-                                $(".novel2>.author").html(auth);//作者
-                                $(".novel2>.img").attr("src",pic);//封面
-                                $(".novel2>.intr>.introduce").html(intr);//简介
-                                $(".novel2>.other>.cate").html(categ);
-                                $(".novel2>.other>.update").html(updat);
-                                $(".novel2>.other>.words").html(words);
-                            }
-                            else if(i==3){
-                                $(".novel3>.title").attr("href",hyper);$(".noval3>.title").text(tit);//标题
-                                $(".novel3>.author").html(auth);//作者
-                                $(".novel3>.img").attr("src",pic);//封面
-                                $(".novel3>.intr>.introduce").html(intr);//简介
-                                $(".novel3>.other>.cate").html(categ);
-                                $(".novel3>.other>.update").html(updat);
-                                $(".novel3>.other>.words").html(words);
-                            }
-                            else if(i==4){
-                                $(".novel4>.title").attr("href",hyper);$(".noval4>.title").text(tit);//标题
-                                $(".novel4>.author").html(auth);//作者
-                                $(".novel4>.img").attr("src",pic);//封面
-                                $(".novel4>.intr>.introduce").html(intr);//简介
-                                $(".novel4>.other>.cate").html(categ);
-                                $(".novel4>.other>.update").html(updat);
-                                $(".novel4>.other>.words").html(words);
-                            }
+                            var novel=".novel"+i+">.innovel";
+                                $("novel>.title").attr("href",hyper);$("novel>.title").text(tit);//标题
+                                $("novel>.author").html(auth);//作者
+                                $("novel>.img").attr("src",pic);//封面
+                                $("novel>.intr>.introduce").html(intr);//简介
+                                $("novel>.other>.cate").html(categ);//其他
+                                $("novel>.other>.update").html(updat);
+                                $("novel>.other>.words").html(words);
                         }
                     }
                 });
