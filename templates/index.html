@@ -92,14 +92,16 @@
 
             <div class="selecttwo">
                 <form action="">作者：<br>
-                    <input type="text" id="author" size="40">
+                    <input type="text" style="display: none;" />
+                    <input type="text" id="author" placeholder="输入后请回车" size="40">
                 </form>
+                <div class="authors"></div>
                 <form action="">偏好书籍：<br>
                     <input type="text" style="display: none;" />
                     <input type="text" id="like" placeholder="输入后请回车" size="40">
                 </form>
+                <div class="likes"></div>
             </div>
-            <div class="likes"></div>
 
             <div class="selectthree">
                 <button type="button" class="btn btn-outline-secondary" id="submit">提交</button>
@@ -135,401 +137,412 @@
         <div class="bar" id="barchart">
         </div>
         <div class="foryou container">
-           <div class="row border border-primary my-3">
-<div class="col text-center bg-primary rounded" style="border: 0;">
-    <h1 class="font-weight-normal ml-2 my-2 p-3 text-white maylike">你可能喜欢</h1>
-</div>
+            <div class="row border border-primary my-3">
+                <div class="col text-center bg-primary rounded" style="border: 0;">
+                    <h1 class="font-weight-normal ml-2 my-2 p-3 text-white maylike">你可能喜欢</h1>
+                </div>
 
 
-</div>
-<div class="row border border-primary my-3 p-3 rounded">
-    <div class="col innovel">
-        <div class="novel0"></div>
-    </div>
-</div>
-<div class="row border border-primary my-3 p-3 rounded">
-    <div class="col innovel">
-        <div class="novel1"></div>
-    </div>
-</div>
-<div class="row border border-primary my-3 p-3 rounded">
-    <div class="col innovel">
-        <div class="novel2"></div>
-    </div>
-</div>
-<div class="row border border-primary my-3 p-3 rounded">
-    <div class="col innovel">
-        <div class="novel3"></div>
-    </div>
-</div>
-<div class="row border border-primary my-3 p-3 rounded">
-    <div class="col innovel">
-        <div class="novel4"></div>
-    </div>
-</div>
+            </div>
+            <div class="row border border-primary my-3 p-3 rounded">
+                <div class="col innovel">
+                    <div class="novel0"></div>
+                </div>
+            </div>
+            <div class="row border border-primary my-3 p-3 rounded">
+                <div class="col innovel">
+                    <div class="novel1"></div>
+                </div>
+            </div>
+            <div class="row border border-primary my-3 p-3 rounded">
+                <div class="col innovel">
+                    <div class="novel2"></div>
+                </div>
+            </div>
+            <div class="row border border-primary my-3 p-3 rounded">
+                <div class="col innovel">
+                    <div class="novel3"></div>
+                </div>
+            </div>
+            <div class="row border border-primary my-3 p-3 rounded">
+                <div class="col innovel">
+                    <div class="novel4"></div>
+                </div>
+            </div>
 
-        <script>//post to django
-            $(document).ready(function () {
-                var token_csrf = "{{csrf_token}}";
-                var json_data = {
-                    "category": [],
-                    "tags": [],
-                    "author": "",
-                    "likes": [],
-                    "statisticalMethod": 0
-                }
-                var caon = [];
-                var taon = [];//to chick if the button is clicked
-                for (var i = 0; i < 20; i++) { caon[i] = 0; taon[i] = 0; }
-
-                $('#category0').click(function () {//选择分类
-                    caon[0]++;
-                    if (caon[0] % 2 == 1) json_data.category.push(0);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 0), 1);
-                })
-                $('#category1').click(function () {
-                    caon[1]++;
-                    if (caon[1] % 2 == 1) json_data.category.push(1);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 1), 1);
-                })
-                $('#category2').click(function () {
-                    caon[2]++;
-                    if (caon[2] % 2 == 1) json_data.category.push(2);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 2), 1);
-                })
-                $('#category3').click(function () {
-                    caon[3]++;
-                    if (caon[3] % 2 == 1) json_data.category.push(3);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 3), 1);
-                })
-                $('#category4').click(function () {
-                    caon[4]++;
-                    if (caon[4] % 2 == 1) json_data.category.push(4);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 4), 1);
-                })
-                $('#category5').click(function () {
-                    caon[5]++;
-                    if (caon[5] % 2 == 1) json_data.category.push(5);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 5), 1);
-                })
-                $('#category6').click(function () {
-                    caon[6]++;
-                    if (caon[6] % 2 == 1) json_data.category.push(6);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 6), 1);
-                })
-                $('#category7').click(function () {
-                    caon[7]++;
-                    if (caon[7] % 2 == 1) json_data.category.push(7);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 7), 1);
-                })
-                $('#category8').click(function () {
-                    caon[8]++;
-                    if (caon[8] % 2 == 1) json_data.category.push(8);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 8), 1);
-                })
-                $('#category9').click(function () {
-                    caon[9]++;
-                    if (caon[9] % 2 == 1) json_data.category.push(9);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 9), 1);
-                })
-                $('#category10').click(function () {
-                    caon[10]++;
-                    if (caon[10] % 2 == 1) json_data.category.push(10);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 10), 1);
-                })
-                $('#category11').click(function () {
-                    caon[11]++;
-                    if (caon[11] % 2 == 1) json_data.category.push(11);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 11), 1);
-                })
-                $('#category12').click(function () {
-                    caon[12]++;
-                    if (caon[12] % 2 == 1) json_data.category.push(12);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 12), 1);
-                })
-                $('#category13').click(function () {
-                    caon[13]++;
-                    if (caon[13] % 2 == 1) json_data.category.push(13);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 13), 1);
-                })
-                $('#category14').click(function () {
-                    caon[14]++;
-                    if (caon[14] % 2 == 1) json_data.category.push(14);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 14), 1);
-                })
-                $('#category15').click(function () {
-                    caon[15]++;
-                    if (caon[15] % 2 == 1) json_data.category.push(15);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 15), 1);
-                })
-                $('#category16').click(function () {
-                    caon[16]++;
-                    if (caon[16] % 2 == 1) json_data.category.push(16);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 16), 1);
-                })
-                $('#category17').click(function () {
-                    caon[17]++;
-                    if (caon[17] % 2 == 1) json_data.category.push(17);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 17), 1);
-                })
-                $('#category18').click(function () {
-                    caon[18]++;
-                    if (caon[18] % 2 == 1) json_data.category.push(18);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 18), 1);
-                })
-                $('#category19').click(function () {
-                    caon[19]++;
-                    if (caon[19] % 2 == 1) json_data.category.push(19);
-                    else json_data.category.splice(json_data.category.findIndex((value) => value == 19), 1);
-                })
-
-                $('#tags0').click(function () {//选择标签
-                    taon[0]++;
-                    if (taon[0] % 2 == 1) json_data.tags.push(0);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 0), 1);//选择分类
-                })
-                $('#tags1').click(function () {
-                    taon[1]++;
-                    if (taon[1] % 2 == 1) json_data.tags.push(1);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 1), 1);
-                })
-                $('#tags2').click(function () {
-                    taon[2]++;
-                    if (taon[2] % 2 == 1) json_data.tags.push(2);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 2), 1);
-                })
-                $('#tags3').click(function () {
-                    taon[3]++;
-                    if (taon[3] % 2 == 1) json_data.tags.push(3);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 3), 1);
-                })
-                $('#tags4').click(function () {
-                    taon[4]++;
-                    if (taon[4] % 2 == 1) json_data.tags.push(4);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 4), 1);
-                })
-                $('#tags5').click(function () {
-                    taon[5]++;
-                    if (taon[5] % 2 == 1) json_data.tags.push(5);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 5), 1);
-                })
-                $('#tags6').click(function () {
-                    taon[6]++;
-                    if (taon[6] % 2 == 1) json_data.tags.push(6);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 6), 1);
-                })
-                $('#tags7').click(function () {
-                    taon[7]++;
-                    if (taon[7] % 2 == 1) json_data.tags.push(7);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 7), 1);
-                })
-                $('#tags8').click(function () {
-                    taon[8]++;
-                    if (taon[8] % 2 == 1) json_data.tags.push(8);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 8), 1);
-                })
-                $('#tags9').click(function () {
-                    taon[9]++;
-                    if (taon[9] % 2 == 1) json_data.tags.push(9);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 9), 1);
-                })
-                $('#tags10').click(function () {
-                    taon[10]++;
-                    if (taon[10] % 2 == 1) json_data.tags.push(10);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 10), 1);
-                })
-                $('#tags11').click(function () {
-                    taon[11]++;
-                    if (taon[11] % 2 == 1) json_data.tags.push(11);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 11), 1);
-                })
-                $('#tags12').click(function () {
-                    taon[12]++;
-                    if (taon[12] % 2 == 1) json_data.tags.push(12);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 12), 1);
-                })
-                $('#tags13').click(function () {
-                    taon[13]++;
-                    if (taon[13] % 2 == 1) json_data.tags.push(13);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 13), 1);
-                })
-                $('#tags14').click(function () {
-                    taon[14]++;
-                    if (taon[14] % 2 == 1) json_data.tags.push(14);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 14), 1);
-                })
-                $('#tags15').click(function () {
-                    taon[15]++;
-                    if (taon[15] % 2 == 1) json_data.tags.push(15);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 15), 1);
-                })
-                $('#tags16').click(function () {
-                    taon[16]++;
-                    if (taon[16] % 2 == 1) json_data.tags.push(16);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 16), 1);
-                })
-                $('#tags17').click(function () {
-                    taon[17]++;
-                    if (taon[17] % 2 == 1) json_data.tags.push(17);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 17), 1);
-                })
-                $('#tags18').click(function () {
-                    taon[18]++;
-                    if (taon[18] % 2 == 1) json_data.tags.push(18);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 18), 1);
-                })
-                $('#tags19').click(function () {
-                    taon[19]++;
-                    if (taon[19] % 2 == 1) json_data.tags.push(19);
-                    else json_data.tags.splice(json_data.tags.findIndex((value) => value == 19), 1);
-                })
-
-                $('#method0').click(function () { json_data.statisticalMethod = 0; })//选择方式
-                $('#method1').click(function () { json_data.statisticalMethod = 1; })
-                $('#method2').click(function () { json_data.statisticalMethod = 2; })
-
-                $("#like").keypress(function (event) {
-                    var templike = $("#like").val();
-                    if (event.keyCode == 13) {
-                        $(".likes").append("<input type='button' class='btn-outline-danger tl' style='font-size: 17px; margin-top: 4px; margin-left:10px'>");//添加偏好
-                        $(".tl:last-child").val(templike);
-                        json_data.likes.push(templike);
+            <script>//post to django
+                $(document).ready(function () {
+                    var token_csrf = "{{csrf_token}}";
+                    var json_data = {
+                        "category": [],
+                        "tags": [],
+                        "authors": [],
+                        "likes": [],
+                        "statisticalMethod": 0
                     }
-                })
-                $(".likes").delegate(".tl", "click", function () { var tempdelete = $(this).val(); $(this).remove(); json_data.likes.splice(json_data.likes.findIndex((value) => value == tempdelete), 1); })//点击删除
-
-                $('#remove').click(function () {//取消选择
+                    var caon = [];
+                    var taon = [];//to chick if the button is clicked
                     for (var i = 0; i < 20; i++) { caon[i] = 0; taon[i] = 0; }
-                    json_data.category.splice(0, json_data.category.length);
-                    json_data.tags.splice(0, json_data.tags.length);
-                    json_data.statisticalMethod = 0;
-                    json_data.likes.splice(0, json_data.likes.length);
-                    $(".tl").remove();
-                })
-                var myChart = echarts.init(document.getElementById('piechart'));
-                var myChart1 = echarts.init(document.getElementById('barchart'));
 
-                $('#submit').click(function () {//提交
-                    json_data.author = $("#author").val();//选择作者
-                    var postdata = JSON.stringify(json_data);
-                    console.log(postdata);
-                    $.ajax({
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        headers: { "X-CSRFToken": token_csrf },
-                        url: "/request/posttest",
-                        dataType: "json",
-                        data: postdata,
-                        success: function (data) {
-                            console.log(data);
-                            var showdata = data.pieChart_Total;
-                            //饼状图
-                            myChart.setOption({
-                                series: [{
-                                    name: '分类',
-                                    type: 'pie',
-                                    radius: '60%',
-                                    data: showdata,
-                                    roseType: 'angle',
-                                    label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } },
-                                }]
-                            });
-                            $('#total').click(function () {
-                                showdata = data.pieChart_Total; myChart.setOption({
+                    $('#category0').click(function () {//选择分类
+                        caon[0]++;
+                        if (caon[0] % 2 == 1) json_data.category.push(0);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 0), 1);
+                    })
+                    $('#category1').click(function () {
+                        caon[1]++;
+                        if (caon[1] % 2 == 1) json_data.category.push(1);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 1), 1);
+                    })
+                    $('#category2').click(function () {
+                        caon[2]++;
+                        if (caon[2] % 2 == 1) json_data.category.push(2);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 2), 1);
+                    })
+                    $('#category3').click(function () {
+                        caon[3]++;
+                        if (caon[3] % 2 == 1) json_data.category.push(3);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 3), 1);
+                    })
+                    $('#category4').click(function () {
+                        caon[4]++;
+                        if (caon[4] % 2 == 1) json_data.category.push(4);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 4), 1);
+                    })
+                    $('#category5').click(function () {
+                        caon[5]++;
+                        if (caon[5] % 2 == 1) json_data.category.push(5);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 5), 1);
+                    })
+                    $('#category6').click(function () {
+                        caon[6]++;
+                        if (caon[6] % 2 == 1) json_data.category.push(6);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 6), 1);
+                    })
+                    $('#category7').click(function () {
+                        caon[7]++;
+                        if (caon[7] % 2 == 1) json_data.category.push(7);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 7), 1);
+                    })
+                    $('#category8').click(function () {
+                        caon[8]++;
+                        if (caon[8] % 2 == 1) json_data.category.push(8);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 8), 1);
+                    })
+                    $('#category9').click(function () {
+                        caon[9]++;
+                        if (caon[9] % 2 == 1) json_data.category.push(9);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 9), 1);
+                    })
+                    $('#category10').click(function () {
+                        caon[10]++;
+                        if (caon[10] % 2 == 1) json_data.category.push(10);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 10), 1);
+                    })
+                    $('#category11').click(function () {
+                        caon[11]++;
+                        if (caon[11] % 2 == 1) json_data.category.push(11);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 11), 1);
+                    })
+                    $('#category12').click(function () {
+                        caon[12]++;
+                        if (caon[12] % 2 == 1) json_data.category.push(12);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 12), 1);
+                    })
+                    $('#category13').click(function () {
+                        caon[13]++;
+                        if (caon[13] % 2 == 1) json_data.category.push(13);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 13), 1);
+                    })
+                    $('#category14').click(function () {
+                        caon[14]++;
+                        if (caon[14] % 2 == 1) json_data.category.push(14);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 14), 1);
+                    })
+                    $('#category15').click(function () {
+                        caon[15]++;
+                        if (caon[15] % 2 == 1) json_data.category.push(15);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 15), 1);
+                    })
+                    $('#category16').click(function () {
+                        caon[16]++;
+                        if (caon[16] % 2 == 1) json_data.category.push(16);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 16), 1);
+                    })
+                    $('#category17').click(function () {
+                        caon[17]++;
+                        if (caon[17] % 2 == 1) json_data.category.push(17);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 17), 1);
+                    })
+                    $('#category18').click(function () {
+                        caon[18]++;
+                        if (caon[18] % 2 == 1) json_data.category.push(18);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 18), 1);
+                    })
+                    $('#category19').click(function () {
+                        caon[19]++;
+                        if (caon[19] % 2 == 1) json_data.category.push(19);
+                        else json_data.category.splice(json_data.category.findIndex((value) => value == 19), 1);
+                    })
+
+                    $('#tags0').click(function () {//选择标签
+                        taon[0]++;
+                        if (taon[0] % 2 == 1) json_data.tags.push(0);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 0), 1);//选择分类
+                    })
+                    $('#tags1').click(function () {
+                        taon[1]++;
+                        if (taon[1] % 2 == 1) json_data.tags.push(1);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 1), 1);
+                    })
+                    $('#tags2').click(function () {
+                        taon[2]++;
+                        if (taon[2] % 2 == 1) json_data.tags.push(2);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 2), 1);
+                    })
+                    $('#tags3').click(function () {
+                        taon[3]++;
+                        if (taon[3] % 2 == 1) json_data.tags.push(3);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 3), 1);
+                    })
+                    $('#tags4').click(function () {
+                        taon[4]++;
+                        if (taon[4] % 2 == 1) json_data.tags.push(4);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 4), 1);
+                    })
+                    $('#tags5').click(function () {
+                        taon[5]++;
+                        if (taon[5] % 2 == 1) json_data.tags.push(5);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 5), 1);
+                    })
+                    $('#tags6').click(function () {
+                        taon[6]++;
+                        if (taon[6] % 2 == 1) json_data.tags.push(6);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 6), 1);
+                    })
+                    $('#tags7').click(function () {
+                        taon[7]++;
+                        if (taon[7] % 2 == 1) json_data.tags.push(7);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 7), 1);
+                    })
+                    $('#tags8').click(function () {
+                        taon[8]++;
+                        if (taon[8] % 2 == 1) json_data.tags.push(8);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 8), 1);
+                    })
+                    $('#tags9').click(function () {
+                        taon[9]++;
+                        if (taon[9] % 2 == 1) json_data.tags.push(9);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 9), 1);
+                    })
+                    $('#tags10').click(function () {
+                        taon[10]++;
+                        if (taon[10] % 2 == 1) json_data.tags.push(10);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 10), 1);
+                    })
+                    $('#tags11').click(function () {
+                        taon[11]++;
+                        if (taon[11] % 2 == 1) json_data.tags.push(11);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 11), 1);
+                    })
+                    $('#tags12').click(function () {
+                        taon[12]++;
+                        if (taon[12] % 2 == 1) json_data.tags.push(12);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 12), 1);
+                    })
+                    $('#tags13').click(function () {
+                        taon[13]++;
+                        if (taon[13] % 2 == 1) json_data.tags.push(13);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 13), 1);
+                    })
+                    $('#tags14').click(function () {
+                        taon[14]++;
+                        if (taon[14] % 2 == 1) json_data.tags.push(14);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 14), 1);
+                    })
+                    $('#tags15').click(function () {
+                        taon[15]++;
+                        if (taon[15] % 2 == 1) json_data.tags.push(15);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 15), 1);
+                    })
+                    $('#tags16').click(function () {
+                        taon[16]++;
+                        if (taon[16] % 2 == 1) json_data.tags.push(16);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 16), 1);
+                    })
+                    $('#tags17').click(function () {
+                        taon[17]++;
+                        if (taon[17] % 2 == 1) json_data.tags.push(17);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 17), 1);
+                    })
+                    $('#tags18').click(function () {
+                        taon[18]++;
+                        if (taon[18] % 2 == 1) json_data.tags.push(18);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 18), 1);
+                    })
+                    $('#tags19').click(function () {
+                        taon[19]++;
+                        if (taon[19] % 2 == 1) json_data.tags.push(19);
+                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 19), 1);
+                    })
+
+                    $('#method0').click(function () { json_data.statisticalMethod = 0; })//选择方式
+                    $('#method1').click(function () { json_data.statisticalMethod = 1; })
+                    $('#method2').click(function () { json_data.statisticalMethod = 2; })
+
+                    $("#like").keypress(function (event) {
+                        var templike = $("#like").val();
+                        if (event.keyCode == 13) {
+                            $(".likes").append("<input type='button' class='btn-outline-danger tl' style='font-size: 17px; margin-top: 4px; margin-left:10px'>");//添加偏好
+                            $(".tl:last-child").val(templike);
+                            json_data.likes.push(templike);
+                        }
+                    })
+                    $(".likes").delegate(".tl", "click", function () { var tempdelete = $(this).val(); $(this).remove(); json_data.likes.splice(json_data.likes.findIndex((value) => value == tempdelete), 1); })//点击删除
+
+                    $("#author").keypress(function (event) {
+                        var templike = $("#author").val();
+                        if (event.keyCode == 13) {
+                            $(".authors").append("<input type='button' class='btn-outline-danger al' style='font-size: 17px; margin-top: 4px; margin-left:10px'>");//添加偏好
+                            $(".al:last-child").val(templike);
+                            json_data.authors.push(templike);
+                        }
+                    })
+                    $(".authors").delegate(".al", "click", function () { var tempdelete = $(this).val(); $(this).remove(); json_data.likes.splice(json_data.likes.findIndex((value) => value == tempdelete), 1); })//点击删除
+
+                    $('#remove').click(function () {//取消选择
+                        for (var i = 0; i < 20; i++) { caon[i] = 0; taon[i] = 0; }
+                        json_data.category.splice(0, json_data.category.length);
+                        json_data.tags.splice(0, json_data.tags.length);
+                        json_data.statisticalMethod = 0;
+                        json_data.likes.splice(0, json_data.likes.length);
+                        $(".tl").remove();
+                        json_data.authors.splice(0, json_data.authors.length);
+                        $(".al").remove();
+                    })
+                    var myChart = echarts.init(document.getElementById('piechart'));
+                    var myChart1 = echarts.init(document.getElementById('barchart'));
+
+                    $('#submit').click(function () {//提交
+                        var postdata = JSON.stringify(json_data);
+                        console.log(postdata);
+                        $.ajax({
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            headers: { "X-CSRFToken": token_csrf },
+                            url: "/request/posttest",
+                            dataType: "json",
+                            data: postdata,
+                            success: function (data) {
+                                console.log(data);
+                                var showdata = data.pieChart_Total;
+                                //饼状图
+                                myChart.setOption({
                                     series: [{
-                                        name: '分类', type: 'pie', radius: '60%', data: showdata,
-                                        roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }
+                                        name: '分类',
+                                        type: 'pie',
+                                        radius: '60%',
+                                        data: showdata,
+                                        roseType: 'angle',
+                                        label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } },
                                     }]
                                 });
-                            });
-                            $('#clicks').click(function () {
-                                showdata = data.pieChart_Clicks; myChart.setOption({
-                                    series: [{
-                                        name: '分类', type: 'pie', radius: '60%', data: showdata,
-                                        roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }
-                                    }]
+                                $('#total').click(function () {
+                                    showdata = data.pieChart_Total; myChart.setOption({
+                                        series: [{
+                                            name: '分类', type: 'pie', radius: '60%', data: showdata,
+                                            roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }
+                                        }]
+                                    });
                                 });
-                            });
-                            $('#recommends').click(function () {
-                                showdata = data.pieChart_Recommedations; myChart.setOption({
-                                    series: [{
-                                        name: '分类', type: 'pie', radius: '60%', data: showdata,
-                                        roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }
-                                    }]
+                                $('#clicks').click(function () {
+                                    showdata = data.pieChart_Clicks; myChart.setOption({
+                                        series: [{
+                                            name: '分类', type: 'pie', radius: '60%', data: showdata,
+                                            roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }
+                                        }]
+                                    });
                                 });
-                            });
-                            $('#words').click(function () {
-                                showdata = data.pieChart_WordCount; myChart.setOption({
-                                    series: [{
-                                        name: '分类', type: 'pie', radius: '60%', data: showdata,
-                                        roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }
-                                    }]
+                                $('#recommends').click(function () {
+                                    showdata = data.pieChart_Recommedations; myChart.setOption({
+                                        series: [{
+                                            name: '分类', type: 'pie', radius: '60%', data: showdata,
+                                            roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }
+                                        }]
+                                    });
                                 });
-                            });
-                            $('#readers').click(function () {
-                                showdata = data.pieChart_ReaderCount; myChart.setOption({
-                                    series: [{
-                                        name: '分类', type: 'pie', radius: '60%', data: showdata,
-                                        roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }
-                                    }]
+                                $('#words').click(function () {
+                                    showdata = data.pieChart_WordCount; myChart.setOption({
+                                        series: [{
+                                            name: '分类', type: 'pie', radius: '60%', data: showdata,
+                                            roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }
+                                        }]
+                                    });
                                 });
-                            });
-                            $('#gifts').click(function () {
-                                showdata = data.pieChart_GiftCount; myChart.setOption({
-                                    series: [{
-                                        name: '分类', type: 'pie', radius: '60%', data: showdata,
-                                        roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }
-                                    }]
+                                $('#readers').click(function () {
+                                    showdata = data.pieChart_ReaderCount; myChart.setOption({
+                                        series: [{
+                                            name: '分类', type: 'pie', radius: '60%', data: showdata,
+                                            roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }
+                                        }]
+                                    });
                                 });
-                            });
-                            //柱状图
-                            myChart1.setOption({
-                                xAxis: {
-                                    axisLabel: {
-                                        interval:0,
-                                        rotate: -20,
+                                $('#gifts').click(function () {
+                                    showdata = data.pieChart_GiftCount; myChart.setOption({
+                                        series: [{
+                                            name: '分类', type: 'pie', radius: '60%', data: showdata,
+                                            roseType: 'angle', label: { normal: { show: true, formatter: '{b}: {c}({d}%)' } }
+                                        }]
+                                    });
+                                });
+                                //柱状图
+                                myChart1.setOption({
+                                    xAxis: {
+                                        axisLabel: {
+                                            interval: 0,
+                                            rotate: -20,
+                                        },
+                                        data: data.barChart_novals
                                     },
-                                    data: data.barChart_novals
-                                },
-                                yAxis: {},
-                                tooltip: {
-                                    trigger: 'item',
-                                    triggerOn: 'click',
-                                    formatter: function (arg) {
-                                        console.log("test novel name")
-                                        console.log(arg)
-                                        return '《' + arg.name + '》的点击量是：' + arg.data
-                                    }
-                                },
-                                series: [{
-                                    type: 'bar',
-                                    data: data.barChart_clicks,
-                                    color: 'blue',
-                                    itemStyle: {
-                                        normal: {
-                                            color: function (params) {
-                                                var colorList = ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#00A3E0', '#FFA100', '#ffc0cb', '#CCCCCC', '#BBFFAA', '#749f83', '#ca8622'];
-                                                return colorList[params.dataIndex]
+                                    yAxis: {},
+                                    tooltip: {
+                                        trigger: 'item',
+                                        triggerOn: 'click',
+                                        formatter: function (arg) {
+                                            console.log("test novel name")
+                                            console.log(arg)
+                                            return '《' + arg.name + '》的点击量是：' + arg.data
+                                        }
+                                    },
+                                    series: [{
+                                        type: 'bar',
+                                        data: data.barChart_clicks,
+                                        color: 'blue',
+                                        itemStyle: {
+                                            normal: {
+                                                color: function (params) {
+                                                    var colorList = ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#00A3E0', '#FFA100', '#ffc0cb', '#CCCCCC', '#BBFFAA', '#749f83', '#ca8622'];
+                                                    return colorList[params.dataIndex]
+                                                }
                                             }
                                         }
-                                    }
-                                }],
-                            });
-                            //推荐小说
-                            var bookdata = data.recommend_books;
-                            console.log(bookdata);
-                            for (var i = 0; i < bookdata.length; i++) {
-                                var pic = bookdata[i].pic_url;
-                                var tit = bookdata[i].title;
-                                var intr = bookdata[i].introduce;
-                                var auth = bookdata[i].author;
-                                var hyper = bookdata[i].hyperlink;
-                                var categ = bookdata[i].category;
-                                var updat = bookdata[i].update_time;
-                                var words = bookdata[i].wordcount;
+                                    }],
+                                });
+                                //推荐小说
+                                var bookdata = data.recommend_books;
+                                console.log(bookdata);
+                                for (var i = 0; i < bookdata.length; i++) {
+                                    var pic = bookdata[i].pic_url;
+                                    var tit = bookdata[i].title;
+                                    var intr = bookdata[i].introduce;
+                                    var auth = bookdata[i].author;
+                                    var hyper = bookdata[i].hyperlink;
+                                    var categ = bookdata[i].category;
+                                    var updat = bookdata[i].update_time;
+                                    var words = bookdata[i].wordcount;
 
-                                var novel = ".novel" + i;
-                                var htmlContent = `
+                                    var novel = ".novel" + i;
+                                    var htmlContent = `
                                     <div class="col">
                                         <div class="row">
                                             <div class="col-md-4">
@@ -565,14 +578,14 @@
                                         </div>
                                     </div>
                                      `;
-                                $(novel).html(htmlContent);
+                                    $(novel).html(htmlContent);
+                                }
                             }
-                        }
-                    });
-                })
-            });
-        </script>
-    </div>
+                        });
+                    })
+                });
+            </script>
+        </div>
 
 </body>
 
