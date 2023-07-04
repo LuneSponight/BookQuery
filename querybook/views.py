@@ -256,7 +256,7 @@ def analyse_data(request):
             # read datas from json
             category = json_data['category']
             tags = json_data['tags']
-            author = [] if json_data['author'] == '' else json_data['author'].split(" ")
+            author = [] if json_data['authors'] == '' else json_data['authors']
             likes = [] if json_data['likes'] == '' else json_data['likes']
             statisticalMethod = json_data['statisticalMethod']
 
