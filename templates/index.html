@@ -137,36 +137,38 @@
         <div class="bar" id="barchart">
         </div>
         <div class="foryou container">
-            <div class="row border border-primary my-3">
-                <div class="col text-center bg-primary rounded" style="border: 0;">
-                    <h1 class="font-weight-normal ml-2 my-2 p-3 text-white maylike">你可能喜欢</h1>
-                </div>
+            <div class="recommend" style="visibility: hidden;">
+                <div class="row border border-primary my-3">
+                    <div class="col text-center bg-primary rounded" style="border: 0;">
+                        <h1 class="font-weight-normal ml-2 my-2 p-3 text-white maylike">你可能喜欢</h1>
+                    </div>
 
 
-            </div>
-            <div class="row border border-primary my-3 p-3 rounded">
-                <div class="col innovel">
-                    <div class="novel0"></div>
                 </div>
-            </div>
-            <div class="row border border-primary my-3 p-3 rounded">
-                <div class="col innovel">
-                    <div class="novel1"></div>
+                <div class="row border border-primary my-3 p-3 rounded">
+                    <div class="col innovel">
+                        <div class="novel0"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="row border border-primary my-3 p-3 rounded">
-                <div class="col innovel">
-                    <div class="novel2"></div>
+                <div class="row border border-primary my-3 p-3 rounded">
+                    <div class="col innovel">
+                        <div class="novel1"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="row border border-primary my-3 p-3 rounded">
-                <div class="col innovel">
-                    <div class="novel3"></div>
+                <div class="row border border-primary my-3 p-3 rounded">
+                    <div class="col innovel">
+                        <div class="novel2"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="row border border-primary my-3 p-3 rounded">
-                <div class="col innovel">
-                    <div class="novel4"></div>
+                <div class="row border border-primary my-3 p-3 rounded">
+                    <div class="col innovel">
+                        <div class="novel3"></div>
+                    </div>
+                </div>
+                <div class="row border border-primary my-3 p-3 rounded">
+                    <div class="col innovel">
+                        <div class="novel4"></div>
+                    </div>
                 </div>
             </div>
 
@@ -184,207 +186,21 @@
                     var taon = [];//to chick if the button is clicked
                     for (var i = 0; i < 20; i++) { caon[i] = 0; taon[i] = 0; }
 
-                    $('#category0').click(function () {//选择分类
-                        caon[0]++;
-                        if (caon[0] % 2 == 1) json_data.category.push(0);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 0), 1);
-                    })
-                    $('#category1').click(function () {
-                        caon[1]++;
-                        if (caon[1] % 2 == 1) json_data.category.push(1);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 1), 1);
-                    })
-                    $('#category2').click(function () {
-                        caon[2]++;
-                        if (caon[2] % 2 == 1) json_data.category.push(2);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 2), 1);
-                    })
-                    $('#category3').click(function () {
-                        caon[3]++;
-                        if (caon[3] % 2 == 1) json_data.category.push(3);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 3), 1);
-                    })
-                    $('#category4').click(function () {
-                        caon[4]++;
-                        if (caon[4] % 2 == 1) json_data.category.push(4);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 4), 1);
-                    })
-                    $('#category5').click(function () {
-                        caon[5]++;
-                        if (caon[5] % 2 == 1) json_data.category.push(5);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 5), 1);
-                    })
-                    $('#category6').click(function () {
-                        caon[6]++;
-                        if (caon[6] % 2 == 1) json_data.category.push(6);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 6), 1);
-                    })
-                    $('#category7').click(function () {
-                        caon[7]++;
-                        if (caon[7] % 2 == 1) json_data.category.push(7);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 7), 1);
-                    })
-                    $('#category8').click(function () {
-                        caon[8]++;
-                        if (caon[8] % 2 == 1) json_data.category.push(8);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 8), 1);
-                    })
-                    $('#category9').click(function () {
-                        caon[9]++;
-                        if (caon[9] % 2 == 1) json_data.category.push(9);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 9), 1);
-                    })
-                    $('#category10').click(function () {
-                        caon[10]++;
-                        if (caon[10] % 2 == 1) json_data.category.push(10);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 10), 1);
-                    })
-                    $('#category11').click(function () {
-                        caon[11]++;
-                        if (caon[11] % 2 == 1) json_data.category.push(11);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 11), 1);
-                    })
-                    $('#category12').click(function () {
-                        caon[12]++;
-                        if (caon[12] % 2 == 1) json_data.category.push(12);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 12), 1);
-                    })
-                    $('#category13').click(function () {
-                        caon[13]++;
-                        if (caon[13] % 2 == 1) json_data.category.push(13);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 13), 1);
-                    })
-                    $('#category14').click(function () {
-                        caon[14]++;
-                        if (caon[14] % 2 == 1) json_data.category.push(14);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 14), 1);
-                    })
-                    $('#category15').click(function () {
-                        caon[15]++;
-                        if (caon[15] % 2 == 1) json_data.category.push(15);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 15), 1);
-                    })
-                    $('#category16').click(function () {
-                        caon[16]++;
-                        if (caon[16] % 2 == 1) json_data.category.push(16);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 16), 1);
-                    })
-                    $('#category17').click(function () {
-                        caon[17]++;
-                        if (caon[17] % 2 == 1) json_data.category.push(17);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 17), 1);
-                    })
-                    $('#category18').click(function () {
-                        caon[18]++;
-                        if (caon[18] % 2 == 1) json_data.category.push(18);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 18), 1);
-                    })
-                    $('#category19').click(function () {
-                        caon[19]++;
-                        if (caon[19] % 2 == 1) json_data.category.push(19);
-                        else json_data.category.splice(json_data.category.findIndex((value) => value == 19), 1);
-                    })
+                    for (let i = 0; i < 20; i++) {
+                        $('#category' + i).click(function () {//选择分类
+                            caon[i]++;
+                            if (caon[i] % 2 == 1) json_data.category.push(i);
+                            else json_data.category.splice(json_data.category.findIndex((value) => value == i), 1);
+                        })
+                    }
 
-                    $('#tags0').click(function () {//选择标签
-                        taon[0]++;
-                        if (taon[0] % 2 == 1) json_data.tags.push(0);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 0), 1);//选择分类
-                    })
-                    $('#tags1').click(function () {
-                        taon[1]++;
-                        if (taon[1] % 2 == 1) json_data.tags.push(1);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 1), 1);
-                    })
-                    $('#tags2').click(function () {
-                        taon[2]++;
-                        if (taon[2] % 2 == 1) json_data.tags.push(2);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 2), 1);
-                    })
-                    $('#tags3').click(function () {
-                        taon[3]++;
-                        if (taon[3] % 2 == 1) json_data.tags.push(3);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 3), 1);
-                    })
-                    $('#tags4').click(function () {
-                        taon[4]++;
-                        if (taon[4] % 2 == 1) json_data.tags.push(4);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 4), 1);
-                    })
-                    $('#tags5').click(function () {
-                        taon[5]++;
-                        if (taon[5] % 2 == 1) json_data.tags.push(5);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 5), 1);
-                    })
-                    $('#tags6').click(function () {
-                        taon[6]++;
-                        if (taon[6] % 2 == 1) json_data.tags.push(6);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 6), 1);
-                    })
-                    $('#tags7').click(function () {
-                        taon[7]++;
-                        if (taon[7] % 2 == 1) json_data.tags.push(7);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 7), 1);
-                    })
-                    $('#tags8').click(function () {
-                        taon[8]++;
-                        if (taon[8] % 2 == 1) json_data.tags.push(8);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 8), 1);
-                    })
-                    $('#tags9').click(function () {
-                        taon[9]++;
-                        if (taon[9] % 2 == 1) json_data.tags.push(9);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 9), 1);
-                    })
-                    $('#tags10').click(function () {
-                        taon[10]++;
-                        if (taon[10] % 2 == 1) json_data.tags.push(10);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 10), 1);
-                    })
-                    $('#tags11').click(function () {
-                        taon[11]++;
-                        if (taon[11] % 2 == 1) json_data.tags.push(11);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 11), 1);
-                    })
-                    $('#tags12').click(function () {
-                        taon[12]++;
-                        if (taon[12] % 2 == 1) json_data.tags.push(12);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 12), 1);
-                    })
-                    $('#tags13').click(function () {
-                        taon[13]++;
-                        if (taon[13] % 2 == 1) json_data.tags.push(13);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 13), 1);
-                    })
-                    $('#tags14').click(function () {
-                        taon[14]++;
-                        if (taon[14] % 2 == 1) json_data.tags.push(14);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 14), 1);
-                    })
-                    $('#tags15').click(function () {
-                        taon[15]++;
-                        if (taon[15] % 2 == 1) json_data.tags.push(15);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 15), 1);
-                    })
-                    $('#tags16').click(function () {
-                        taon[16]++;
-                        if (taon[16] % 2 == 1) json_data.tags.push(16);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 16), 1);
-                    })
-                    $('#tags17').click(function () {
-                        taon[17]++;
-                        if (taon[17] % 2 == 1) json_data.tags.push(17);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 17), 1);
-                    })
-                    $('#tags18').click(function () {
-                        taon[18]++;
-                        if (taon[18] % 2 == 1) json_data.tags.push(18);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 18), 1);
-                    })
-                    $('#tags19').click(function () {
-                        taon[19]++;
-                        if (taon[19] % 2 == 1) json_data.tags.push(19);
-                        else json_data.tags.splice(json_data.tags.findIndex((value) => value == 19), 1);
-                    })
+                    for (let i = 0; i < 20; i++) {
+                        $('#tags' + i).click(function () {//选择标签
+                            taon[i]++;
+                            if (taon[i] % 2 == 1) json_data.tags.push(i);
+                            else json_data.tags.splice(json_data.tags.findIndex((value) => value == i), 1);//选择分类
+                        })
+                    }
 
                     $('#method0').click(function () { json_data.statisticalMethod = 0; })//选择方式
                     $('#method1').click(function () { json_data.statisticalMethod = 1; })
@@ -495,6 +311,7 @@
                                         }]
                                     });
                                 });
+
                                 //柱状图
                                 myChart1.setOption({
                                     xAxis: {
@@ -529,6 +346,9 @@
                                     }],
                                 });
                                 //推荐小说
+
+                                //显示表
+                                $(".recommend").attr("visibility", "");
                                 var bookdata = data.recommend_books;
                                 console.log(bookdata);
                                 for (var i = 0; i < bookdata.length; i++) {
