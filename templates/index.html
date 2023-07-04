@@ -348,8 +348,9 @@
                                 //推荐小说
 
                                 //显示表
-                                $(".recommend").css("visibility", "");
                                 var bookdata = data.recommend_books;
+                                console.log(bookdata)
+                                if (bookdata != []) $(".recommend").css("visibility", "");
                                 console.log(bookdata);
                                 for (var i = 0; i < bookdata.length; i++) {
                                     var pic = bookdata[i].pic_url;
