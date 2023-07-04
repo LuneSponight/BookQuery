@@ -142,11 +142,34 @@
                     <div class="col text-center bg-primary rounded" style="border: 0;">
                         <h1 class="font-weight-normal ml-2 my-2 p-3 text-white maylike">你可能喜欢</h1>
                     </div>
-                </div>
-                <div class="recommend-contain">
-                    //推荐的书放这里
-                </div>
 
+
+                </div>
+                <div class="row border border-primary my-3 p-3 rounded">
+                    <div class="col innovel">
+                        <div class="novel0"></div>
+                    </div>
+                </div>
+                <div class="row border border-primary my-3 p-3 rounded">
+                    <div class="col innovel">
+                        <div class="novel1"></div>
+                    </div>
+                </div>
+                <div class="row border border-primary my-3 p-3 rounded">
+                    <div class="col innovel">
+                        <div class="novel2"></div>
+                    </div>
+                </div>
+                <div class="row border border-primary my-3 p-3 rounded">
+                    <div class="col innovel">
+                        <div class="novel3"></div>
+                    </div>
+                </div>
+                <div class="row border border-primary my-3 p-3 rounded">
+                    <div class="col innovel">
+                        <div class="novel4"></div>
+                    </div>
+                </div>
             </div>
 
             <script>//post to django
@@ -341,40 +364,34 @@
 
                                     var novel = ".novel" + i;
                                     var htmlContent = `
-                                    <div class="row border border-primary my-3 p-3 rounded">
-                                        <div class="col innovel">
-                                            <div class="novel${i}">
-                                                <div class="col">
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <img class="img" src="${pic}" alt="unknow" width="240px" height="300px">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <a class="h3" target="_blank" href="${hyper}">《${tit}》</a><br>
+                                                <div class="author">
+                                                    <h5>作者：<span>${auth}</span></h5>
+                                                </div>
+                                                <div>
+                                                    <h5>作品简介：</h5>
+                                                    <p>${intr}</p>
+                                                </div>
+                                                <div class="other">
                                                     <div class="row">
-                                                        <div class="col-md-4">
-                                                            <img class="img" src="${pic}" alt="unknow" width="240px" height="300px">
+                                                        <div class="col">
+                                                            <h5>分类：<span>${categ}</span></h5>
                                                         </div>
-                                                        <div class="col-md-8">
-                                                            <a class="h3" target="_blank" href="${hyper}">《${tit}》</a><br>
-                                                            <div class="author">
-                                                                <h5>作者：<span>${auth}</span></h5>
-                                                            </div>
-                                                            <div>
-                                                                <h5>作品简介：</h5>
-                                                                <p>${intr}</p>
-                                                            </div>
-                                                            <div class="other">
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <h5>分类：<span>${categ}</span></h5>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <h5>更新时间：<span>${updat}</span></h5>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <h5>总字数：<span>${words}</span></h5>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <h5>更新时间：<span>${updat}</span></h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <h5>总字数：<span>${words}</span></h5>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -382,7 +399,7 @@
                                         </div>
                                     </div>
                                      `;
-                                    $('.recommend - contain').append(htmlContent);
+                                    $(novel).html(htmlContent);
                                 }
                             }
                         });
