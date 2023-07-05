@@ -302,6 +302,10 @@ def RecommendByAuthorAndNovelName(AuthorList, NovelNameList):
         .map(lambda x: (x[0], x[1], x[2], AuthorID_AuthorName_Dict[x[3]]
                         , "https://www.17k.com/book/" + x[4] + ".html", CategoryID_CategoryName_Dict[x[5]], str(x[6]),
                         x[7])).take(5)
+    RecommendNovelNameListBySameAuthor = Novel.select(Novel["Title"],Novel["AuthorID"])\
+        .rdd.filter(lambda x:x[1] in Select_AuthorIDList and x[0] not in NovelNameList).map(lambda x:x[0]).collect()
+    NovelNameList = NovelNameList + RecommendNovelNameListBySameAuthor
+
 
     # 推荐具有相同标签的其他小说
     Select_Novel_NovelIDList = Novel.select(Novel["NovelID"], Novel["Title"]).rdd.filter(
