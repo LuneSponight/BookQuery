@@ -329,6 +329,7 @@
                                 console.log(bookdata)
                                 if (bookdata.length != 0) $(".recommend").css("visibility", "");
                                 console.log(bookdata);
+                                $('.recommend-contain').empty();
                                 for (var i = 0; i < bookdata.length; i++) {
                                     var pic = bookdata[i].pic_url;
                                     var tit = bookdata[i].title;
