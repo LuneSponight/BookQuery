@@ -294,7 +294,7 @@ def analyse_data(request):
 
             json_return = manage_json(result, result_recommend, json_return)
         except Exception as e:
-            print(e)
+            print("exception:", e)
 
         print(json_return)
 
