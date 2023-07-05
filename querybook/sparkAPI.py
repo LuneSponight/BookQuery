@@ -238,7 +238,7 @@ def StatisticsByTag(Params_list):
         .filter(lambda x: x[1] in Select_NovelID_list_ByThree).join(Tag.rdd) \
         .map(lambda x: (x[1][1], x[1][0])).filter(lambda x: (x[0] in Select_Tag) or Valid_list[0]).sortBy(
         keyfunc=lambda x: x[1])
-    Return_Dict["不同标签小说的数量"] = help.ConvertMyDictToNeedDict(dict(Select_Novel_TagName_NovelID.countByKey()))
+    Return_Dict["总计"] = help.ConvertMyDictToNeedDict(dict(Select_Novel_TagName_NovelID.countByKey()))
 
     # 在选出的小说中计算不同标签小说的平均月点击量
     Select_Novel_TagName_MonthlyClicks = Select_Novel_TagName_NovelID.map(lambda x: (x[1], x[0])) \
