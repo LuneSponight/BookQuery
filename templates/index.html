@@ -186,21 +186,25 @@
                     $("#like").keypress(function (event) {
                         var templike = $("#like").val();
                         if (event.keyCode == 13) {
-                            $(".likes").append("<input type='button' class='btn-outline-danger tl' style='font-size: 17px; margin-top: 4px; margin-left:10px'>");//添加偏好
+                            $(".likes").append("<input type='button' class='btn-outline-primary tl' style='font-size: 17px; margin-top: 4px; margin-left:10px'>");//添加偏好
                             $(".tl:last-child").val(templike);
                             json_data.likes.push(templike);
                         }
                     })
+                    $(".likes").delegate(".tl","mouseenter",function(){$(this).addClass("btn-outline-danger");})
+                    $(".likes").delegate(".tl","mouseleave",function(){$(this).removeClass("btn-outline-danger");})
                     $(".likes").delegate(".tl", "click", function () { var tempdelete = $(this).val(); $(this).remove(); json_data.likes.splice(json_data.likes.findIndex((value) => value == tempdelete), 1); })//点击删除
 
                     $("#author").keypress(function (event) {
                         var templike = $("#author").val();
                         if (event.keyCode == 13) {
-                            $(".authors").append("<input type='button' class='btn-outline-danger al' style='font-size: 17px; margin-top: 4px; margin-left:10px'>");//添加偏好
+                            $(".authors").append("<input type='button' class='btn-outline-info al' style='font-size: 17px; margin-top: 4px; margin-left:10px'>");//添加偏好
                             $(".al:last-child").val(templike);
                             json_data.authors.push(templike);
                         }
                     })
+                    $(".authors").delegate(".al","mouseenter",function(){$(this).addClass("btn-outline-danger");})
+                    $(".authors").delegate(".al","mouseleave",function(){$(this).removeClass("btn-outline-danger");})
                     $(".authors").delegate(".al", "click", function () { var tempdelete = $(this).val(); $(this).remove(); json_data.authors.splice(json_data.authors.findIndex((value) => value == tempdelete), 1); })//点击删除
 
                     $('#remove').click(function () {//取消选择

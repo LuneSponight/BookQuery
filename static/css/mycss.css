@@ -8,8 +8,9 @@
 
 .charts {
     width: 1120px;
+    height: 100%;
     left: 400px;
-    background-color: aliceblue;
+    background-color: rgb(175, 206, 242);
     position: relative;
 }
 
